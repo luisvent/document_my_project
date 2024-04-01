@@ -1,6 +1,18 @@
 
-<div class="m-10 flex justify-center flex-col gap-12 items-center">
+<div class="prose max-w-none m-10 flex justify-center flex-col items-center">
+
+    <div class="flex flex-col min-w-96">
+        <h2>Project Title</h2>
+        <textarea [value]="description$ | async" class="textarea textarea-bordered" placeholder="Bio"></textarea>
+    </div>
+
+    <div class="flex flex-col min-w-96">
+        <h2>Project Description</h2>
+        <textarea [value]="description$ | async" class="textarea textarea-bordered" placeholder="Bio"></textarea>
+    </div>
+
     <button (click)="addDescription()" class="btn">Button</button>
-<textarea [value]="description$ | async" class="textarea textarea-bordered" placeholder="Bio"></textarea>
+
+   <app-md-preview [text]="markdownData"></app-md-preview>
 </div>
 

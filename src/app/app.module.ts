@@ -5,10 +5,13 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {reducers} from "./store/reducers";
+import {MarkdownModule} from "ngx-markdown";
+import { MdPreviewComponent } from './md-preview/md-preview.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MdPreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -18,6 +21,7 @@ import {reducers} from "./store/reducers";
       maxAge: 25, // Retains last 25 states
       logOnly: false, // Restrict extension to log-only mode
     }),
+    MarkdownModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

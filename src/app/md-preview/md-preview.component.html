@@ -1,0 +1,8 @@
+
+<div class="border-2 rounded-2xl w-full lg:w-[900px] p-10 my-8">
+    <markdown ngPreserveWhitespaces
+              [data]="text"
+              (ready)="ready.next(text)"
+    >
+    </markdown>
+</div>
