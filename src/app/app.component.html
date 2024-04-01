@@ -1,18 +1,22 @@
+<app-background></app-background>
 
-<div class="prose max-w-none m-10 flex justify-center flex-col items-center">
+<div class="absolute prose max-w-none w-full m-10 flex gap-12 justify-center flex-row items-start">
 
-    <div class="flex flex-col min-w-96">
-        <h2>Project Title</h2>
-        <textarea [value]="description$ | async" class="textarea textarea-bordered" placeholder="Bio"></textarea>
-    </div>
+   <main class="sticky top-0">
+       <div class="flex flex-col min-w-96">
+           <h2>Project Title</h2>
+           <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
+       </div>
 
-    <div class="flex flex-col min-w-96">
-        <h2>Project Description</h2>
-        <textarea [value]="description$ | async" class="textarea textarea-bordered" placeholder="Bio"></textarea>
-    </div>
+       <div class="flex flex-col min-w-96">
+           <h2>Project Description</h2>
+           <textarea [value]="description$ | async" class="textarea textarea-bordered" placeholder="Bio"></textarea>
+       </div>
 
-    <button (click)="addDescription()" class="btn">Button</button>
-
-   <app-md-preview [text]="markdownData"></app-md-preview>
+       <button (click)="generateMarkdown()" class="btn">Button</button>
+   </main>
+    <aside class="max-h-full overflow-auto">
+   <app-md-preview *ngIf="displayMarkdown$ | async" [text]="markdownData"></app-md-preview>
+    </aside>
 </div>
 

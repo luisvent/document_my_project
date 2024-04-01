@@ -2,11 +2,13 @@ import {createReducer,on} from '@ngrx/store';
 import {Actions} from "../actions/action-types";
 
 export interface EditorState {
-    description: string
+    description: string,
+    displayMarkdownResult: boolean
 }
 
 const initialState: EditorState = {
     description: '',
+    displayMarkdownResult: false
 };
 
 export const editorReducer = createReducer(
@@ -18,6 +20,14 @@ export const editorReducer = createReducer(
 
     on(Actions.removeDescription, (state, action): EditorState => {
         return newState(state, { description: ''})
+    }),
+
+    on(Actions.displayMarkdownResult, (state, action): EditorState => {
+        return newState(state, { displayMarkdownResult: true})
+    }),
+
+    on(Actions.hideMarkdownResult, (state, action): EditorState => {
+        return newState(state, { displayMarkdownResult: false})
     }),
 );
 

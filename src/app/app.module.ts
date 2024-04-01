@@ -7,11 +7,13 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {reducers} from "./store/reducers";
 import {MarkdownModule} from "ngx-markdown";
 import { MdPreviewComponent } from './md-preview/md-preview.component';
+import { BackgroundComponent } from './background/background.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MdPreviewComponent
+    MdPreviewComponent,
+    BackgroundComponent
   ],
   imports: [
     BrowserModule,
