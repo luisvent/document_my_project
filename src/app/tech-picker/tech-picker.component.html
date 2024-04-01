@@ -1,0 +1,10 @@
+<form class="flex grow-1 gap-x-4 flex-row flex-wrap max-h-64 overflow-auto" [formGroup]="techForm">
+
+    <div class="form-control" *ngFor="let tech of developmentTechnologies">
+        <label class="label cursor-pointer">
+            <input [formControlName]="tech.name" type="checkbox" checked="checked" class="checkbox" />
+            <span class="ml-2 label-text">{{tech.name}}</span>
+        </label>
+    </div>
+
+</form>

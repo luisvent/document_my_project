@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
   public displayMarkdown$ = this.store.select(selectDisplayMarkdown);
   public markdownData = readmeDemo;
 
+
   constructor(private store: Store<AppState>) {
   }
 

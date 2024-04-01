@@ -8,12 +8,15 @@ import {reducers} from "./store/reducers";
 import {MarkdownModule} from "ngx-markdown";
 import { MdPreviewComponent } from './md-preview/md-preview.component';
 import { BackgroundComponent } from './background/background.component';
+import { TechPickerComponent } from './tech-picker/tech-picker.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     MdPreviewComponent,
-    BackgroundComponent
+    BackgroundComponent,
+    TechPickerComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { BackgroundComponent } from './background/background.component';
       logOnly: false, // Restrict extension to log-only mode
     }),
     MarkdownModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
