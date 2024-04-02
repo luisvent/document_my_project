@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply text-slate-600
+}
+
+p {
+    @apply text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400
+}
+
+h1 {
+    @apply mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-slate-600
+}
+
+h2{
+    @apply text-4xl font-bold dark:text-white mb-2 mt-3 text-slate-600
+}
+
+h3 {
+    @apply text-3xl font-bold dark:text-white mb-2 mt-3 text-slate-600
+}
+
+h4 {
+    @apply text-2xl font-bold dark:text-white mb-2 mt-3 text-slate-600
+}
+
+h5 {
+    @apply text-xl font-bold dark:text-white mb-2 mt-3 text-slate-600
+}
+
+
+h6 {
+    @apply text-lg font-bold dark:text-white mb-2 mt-3 text-slate-600
+}

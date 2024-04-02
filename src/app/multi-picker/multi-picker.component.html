@@ -1,0 +1,75 @@
+<div class="flex flex-col mb-4">
+    <div class="flex justify-between items-center">
+        <h6 class="capitalize">{{ title }}</h6>
+        <button [attr.data-dropdown-toggle]="id"
+                [id]="id + 'SearchButton'"
+                class="h-7 px-3 capitalize text-xs text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                data-dropdown-placement="bottom"
+                type="button">
+            Select {{ title }}
+            <svg aria-hidden="true" class="w-2.5 h-2.5 ms-3" fill="none" viewBox="0 0 10 6"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="flex p-4 gap-2 flex-wrap w-full min-h-8 max-h-24 bg-white border border-gray-300 rounded-lg overflow-auto">
+        <span (click)="removeItem(selected)" *ngFor="let selected of selectedItems"
+              class="inline-flex items-center px-2 py-1 me-2 text-sm font-medium text-blue-800 bg-blue-100 rounded dark:bg-blue-900 dark:text-blue-300"
+              id="badge-dismiss-default">
+        {{ selected.name }}
+            <button aria-label="Remove"
+                    class="inline-flex items-center p-1 ms-2 text-sm text-blue-400 bg-transparent rounded-sm hover:bg-blue-200 hover:text-blue-900 dark:hover:bg-blue-800 dark:hover:text-blue-300"
+                    data-dismiss-target="#badge-dismiss-default" type="button">
+        <svg aria-hidden="true" class="w-2 h-2" fill="none" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+        <path d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+              stroke-width="2"/>
+        </svg>
+        </button>
+        </span>
+    </div>
+</div>
+
+
+<!-- Dropdown menu -->
+<div [id]="id" class="z-10 hidden bg-white rounded-lg shadow w-60 dark:bg-gray-700">
+    <div class="p-3">
+        <label class="sr-only" for="input-group-search">Search {{ title }}</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400"
+                     fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" stroke="currentColor" stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"/>
+                </svg>
+            </div>
+            <input #searchInput
+                   [placeholder]="'Search ' + title"
+                   class="block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   id="input-group-search"
+                   type="text">
+        </div>
+    </div>
+    <small *ngIf="items.length === 0" class="text-center block">No items to select</small>
+    <ul aria-labelledby="dropdownSearchButton"
+        class="h-48 px-3 pb-3 overflow-y-auto text-sm text-gray-700 dark:text-gray-200">
+        <li *ngFor="let item of items" [hidden]="!item.name.toLowerCase().includes(searchInput.value.toLowerCase())">
+            <div class="flex items-center ps-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                <input (change)="itemChange($event, item)"
+                       [checked]="selectedItems.includes(item)"
+                       [id]="id + item.value"
+                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500"
+                       type="checkbox"
+                       value="">
+                <label [for]="id + item.value"
+                       class="w-full py-2 ms-2 text-sm font-medium text-gray-900 rounded dark:text-gray-300">
+                    {{
+                        item.name
+                    }}</label>
+            </div>
+        </li>
+    </ul>
+</div>
