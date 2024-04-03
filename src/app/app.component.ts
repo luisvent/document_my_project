@@ -6,6 +6,7 @@ import {readmeDemo} from "../data/data";
 import {AppState} from "./store/state.interface";
 import {initFlowbite} from "flowbite";
 import {PickerItem} from "./multi-picker/multi-picker.component";
+import {MarkdownService} from "./services/markdown.service";
 
 @Component({
     selector: 'app-root',
@@ -90,7 +91,7 @@ export class AppComponent implements OnInit {
     ];
 
 
-    constructor(private store: Store<AppState>) {
+    constructor(private store: Store<AppState>, private mdService: MarkdownService) {
     }
 
     ngOnInit(): void {
@@ -98,8 +99,11 @@ export class AppComponent implements OnInit {
     }
 
     generateMarkdown() {
-        this.store.dispatch(Actions.displayMarkdownResult())
+
+
+        // this.store.dispatch(Actions.displayMarkdownResult())
     }
+
 
     addDescription() {
         this.store.dispatch(Actions.addDescription({description: 'testing ngrx'}));

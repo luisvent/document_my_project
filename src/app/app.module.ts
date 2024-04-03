@@ -23,8 +23,8 @@ import {MultiPickerComponent} from './multi-picker/multi-picker.component';
         AppRoutingModule,
         StoreModule.forRoot(reducers),
         StoreDevtoolsModule.instrument({
-            maxAge: 25, // Retains last 25 states
-            logOnly: false, // Restrict extension to log-only mode
+            maxAge: 25,
+            logOnly: false,
         }),
         MarkdownModule.forRoot(),
         ReactiveFormsModule,

@@ -1,10 +1,10 @@
 <app-background></app-background>
 
-<div class="absolute max-w-none w-full flex gap-12 justify-center flex-row items-start py-12">
+<div class="absolute w-full flex gap-12 justify-center flex-row items-start py-12">
 
-    <main class="sticky top-0 max-w-96 ">
+    <main [ngClass]="{'max-w-96': displayMarkdown$ | async}" class="sticky top-0 w-full max-w-[700px]">
 
-        <div class="h-[90vh] min-w-96 overflow-auto p-4">
+        <div class="overflow-auto p-4">
 
             <div class="flex flex-col">
                 <h6>Title</h6>
@@ -72,8 +72,8 @@
             Generate
         </button>
     </main>
-    <aside class="max-h-full overflow-auto prose">
-        <app-md-preview *ngIf="displayMarkdown$ | async" [text]="markdownData"></app-md-preview>
+    <aside *ngIf="displayMarkdown$ | async" class="max-h-full w-full max-w-[600px] overflow-auto prose">
+        <app-md-preview [text]="markdownData"></app-md-preview>
     </aside>
 </div>
 
