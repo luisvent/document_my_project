@@ -7,6 +7,7 @@ import {AppState} from "./store/state.interface";
 import {initFlowbite} from "flowbite";
 import {PickerItem} from "./multi-picker/multi-picker.component";
 import {MarkdownService} from "./services/markdown.service";
+import {UtilsService} from "./services/utils.service";
 
 @Component({
     selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
     public description$ = this.store.select(selectEditorDescription);
     public displayMarkdown$ = this.store.select(selectDisplayMarkdown);
     public markdownData = readmeDemo;
+    formattedCode = '';
 
     developmentTechnologies = [
         // Languages
@@ -91,17 +93,17 @@ export class AppComponent implements OnInit {
     ];
 
 
-    constructor(private store: Store<AppState>, private mdService: MarkdownService) {
+    constructor(private store: Store<AppState>, private mdService: MarkdownService,
+                private utilsService: UtilsService) {
     }
 
     ngOnInit(): void {
         initFlowbite();
+        this.markdownData = this.mdService.test();
     }
 
     generateMarkdown() {
-
-
-        // this.store.dispatch(Actions.displayMarkdownResult())
+        this.store.dispatch(Actions.displayMarkdownResult())
     }
 
 

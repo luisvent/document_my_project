@@ -10,13 +10,17 @@ import {MdPreviewComponent} from './md-preview/md-preview.component';
 import {BackgroundComponent} from './background/background.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MultiPickerComponent} from './multi-picker/multi-picker.component';
+import { RawCodeSnippetComponent } from './raw-code-snippet/raw-code-snippet.component';
+import { MdCodeSnippetComponent } from './md-code-snippet/md-code-snippet.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         MdPreviewComponent,
         BackgroundComponent,
-        MultiPickerComponent
+        MultiPickerComponent,
+        RawCodeSnippetComponent,
+        MdCodeSnippetComponent
     ],
     imports: [
         BrowserModule,
