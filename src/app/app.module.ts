@@ -10,8 +10,10 @@ import {MdPreviewComponent} from './md-preview/md-preview.component';
 import {BackgroundComponent} from './background/background.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MultiPickerComponent} from './multi-picker/multi-picker.component';
-import { RawCodeSnippetComponent } from './raw-code-snippet/raw-code-snippet.component';
-import { MdCodeSnippetComponent } from './md-code-snippet/md-code-snippet.component';
+import {RawCodeSnippetComponent} from './raw-code-snippet/raw-code-snippet.component';
+import {MdCodeSnippetComponent} from './md-code-snippet/md-code-snippet.component';
+import {ToastComponent} from './toast/toast.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -20,7 +22,8 @@ import { MdCodeSnippetComponent } from './md-code-snippet/md-code-snippet.compon
         BackgroundComponent,
         MultiPickerComponent,
         RawCodeSnippetComponent,
-        MdCodeSnippetComponent
+        MdCodeSnippetComponent,
+        ToastComponent
     ],
     imports: [
         BrowserModule,
@@ -32,6 +35,7 @@ import { MdCodeSnippetComponent } from './md-code-snippet/md-code-snippet.compon
         }),
         MarkdownModule.forRoot(),
         ReactiveFormsModule,
+        BrowserAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

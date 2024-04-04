@@ -8,6 +8,7 @@ import {initFlowbite} from "flowbite";
 import {PickerItem} from "./multi-picker/multi-picker.component";
 import {MarkdownService} from "./services/markdown.service";
 import {UtilsService} from "./services/utils.service";
+import {Toast, ToastService} from "./services/toast.service";
 
 @Component({
     selector: 'app-root',
@@ -94,7 +95,7 @@ export class AppComponent implements OnInit {
 
 
     constructor(private store: Store<AppState>, private mdService: MarkdownService,
-                private utilsService: UtilsService) {
+                private utilsService: UtilsService, public toastService: ToastService) {
     }
 
     ngOnInit(): void {
@@ -103,7 +104,8 @@ export class AppComponent implements OnInit {
     }
 
     generateMarkdown() {
-        this.store.dispatch(Actions.displayMarkdownResult())
+        this.store.dispatch(Actions.displayMarkdownResult());
+        this.toastService.success('testing');
     }
 
 
@@ -113,5 +115,9 @@ export class AppComponent implements OnInit {
 
     selectedTechnologies(technologies: PickerItem[]) {
         console.log(technologies)
+    }
+
+    generateToast(toast: Toast) {
+
     }
 }

@@ -78,3 +78,4 @@
     </aside>
 </div>
 
+<app-toast *ngFor="let toast of toastService.toasts | async" [toast]="toast"></app-toast>

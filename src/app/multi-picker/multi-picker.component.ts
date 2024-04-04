@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {UtilsService} from "../services/utils.service";
 
 export interface PickerItem {
     name: string;
@@ -23,9 +24,9 @@ export class MultiPickerComponent {
 
     selectedItems: PickerItem[] = [];
 
-    id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    id = this.utilsService.guid();
 
-    constructor() {
+    constructor(private utilsService: UtilsService) {
     }
 
     itemChange(event: Event, item: PickerItem) {

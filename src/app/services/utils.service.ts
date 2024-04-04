@@ -28,4 +28,8 @@ export class UtilsService {
         navigator.clipboard.writeText(selBox.value);
         document.body.removeChild(selBox);
     }
+
+    guid() {
+        return 'id-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
 }
