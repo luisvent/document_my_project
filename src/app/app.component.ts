@@ -105,7 +105,6 @@ export class AppComponent implements OnInit {
 
     generateMarkdown() {
         this.store.dispatch(Actions.displayMarkdownResult());
-        this.toastService.success('testing');
     }
 
 

@@ -73,7 +73,7 @@
         </button>
 
     </main>
-    <aside *ngIf="displayMarkdown$ | async" class="max-h-full w-full max-w-[800px] overflow-auto">
+    <aside *ngIf="displayMarkdown$ | async" class="max-h-full w-full max-w-[800px] overflow-hidden">
         <app-md-code-snippet [text]="markdownData"></app-md-code-snippet>
     </aside>
 </div>
