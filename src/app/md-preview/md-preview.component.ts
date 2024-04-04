@@ -8,6 +8,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 export class MdPreviewComponent {
 
     @Input() text!: string;
+    @Input() theme: 'dark' | 'light' = 'dark';
     @Output() ready: EventEmitter<string> = new EventEmitter<string>();
 
     constructor() {
