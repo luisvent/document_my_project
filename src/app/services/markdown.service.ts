@@ -17,14 +17,28 @@ export enum LicenseType {
     Custom = 'Custom'
 }
 
+interface InstallSectionOptions {
+    projectName: string;
+    packageManager: string;
+    dependencies: string[];
+    devDependencies: string[];
+    installationSteps: string[];
+    includeSetup?: boolean;
+    setupSteps?: string[];
+    includeUsage?: boolean;
+    usageSteps?: string[];
+}
+
+
 @Injectable({
     providedIn: 'root'
 })
 export class MarkdownService {
 
+    TABLE_CONTENT_PLACEHOLDER = '<!-- TABLE_CONTENT_PLACEHOLDER -->';
+    LINKS_PLACEHOLDER = '<!-- LINKS_PLACEHOLDER -->';
+
     constructor() {
-        // console.log(this.generateTableOfContentsFromMarkdown(readmeDemo));
-        this.test();
     }
 
 
@@ -32,8 +46,8 @@ export class MarkdownService {
     test() {
         // Sample data
         const npmPackageName = 'my-awesome-package';
-        const githubRepo = 'my-awesome-repo';
-        const githubOwner = 'johndoe';
+        const githubRepo = 'meta_tag_generator';
+        const githubOwner = 'luisvent';
 
 
 // Generate NPM badges
@@ -123,6 +137,63 @@ export class MarkdownService {
         ];
 
 // Generate markdown content
+
+        const sections = [
+            this.generateIntroductionSection('My package', 'Test package introduction just for testing',
+                'https//:url.com', 'https://placehold.co/600x400'),
+            this.generateNpmBadges(npmPackageName, {
+                npmVersion: {
+                    color: '0470FF',
+                    logoColor: 'white'
+                },
+                npmDownloads: {
+                    color: '67ACF3'
+                },
+                bundleSize: {
+                    color: 'F9DBBC'
+                }
+            }),
+            this.generateGitHubBadges(githubRepo, githubOwner),
+            this.generateLinksPlaceholder(),
+            this.generateImages(images),
+            this.generateTableContentPlaceholder(),
+            this.generateTableOfContentsFromMarkdown(''),
+            this.generateDescription(descriptions),
+            this.generateShowcaseSection(['https://placehold.co/600x400', 'https://placehold.co/600x400', 'https://placehold.co/600x400', 'https://placehold.co/600x400']),
+            this.generateFeaturesSection(features),
+            this.generateTechStackSection(techStack),
+            this.generateInstallSection({
+                projectName: 'My Awesome Project',
+                packageManager: 'npm',
+                dependencies: ['react', 'react-dom', 'axios'],
+                devDependencies: ['eslint', 'prettier'],
+                installationSteps: ['Run the development server with `npm run dev`'],
+                includeSetup: true,
+                setupSteps: ['Install Node.js v12 or later', 'Install a code editor (e.g., Visual Studio Code)'],
+                includeUsage: true,
+                usageSteps: ['Open the project directory in your code editor', 'Run `npm start` to start the development server'],
+            }),
+            this.generateParametersTable([
+                {fieldName: 'name', description: 'Name of the user', defaultValue: 'John Doe'},
+                {fieldName: 'age', description: 'Age of the user'},
+                {fieldName: 'isAdmin', description: 'Whether the user is an admin or not', defaultValue: 'false'}
+            ]),
+            this.generateAcknowledgementsSection(acknowledgements),
+            this.generateContributionSection(contributionSection),
+            this.generateAuthorSection('John Doe', 'john@example.com'),
+            this.generateLicenseSection(licenseSection)
+        ];
+
+        let result = '';
+
+        for (const section of sections) {
+            result += `${section}\n\n`;
+        }
+
+        result = this.generateTableOfContentsFromMarkdown(result);
+        result = this.generateLinksSection(result);
+
+        return result;
         const markdownContent = `${this.generateIntroductionSection('My package', 'Test package introduction just for testing', 'https//:url.com', 'https//:url.com')}
         
 ${npmBadges}
@@ -165,6 +236,10 @@ ${this.generateAuthorSection('John Doe', 'john@example.com')}
 
     // endregion
 
+    generateTableContentPlaceholder() {
+        return this.TABLE_CONTENT_PLACEHOLDER;
+    }
+
     generateParametersTable(properties: {
         fieldName: string;
         description: string;
@@ -174,7 +249,7 @@ ${this.generateAuthorSection('John Doe', 'john@example.com')}
         let tableBody = '';
 
         for (const prop of properties) {
-            const row = `| ${prop.fieldName} | ${prop.description} | ${prop.defaultValue || ''} |`;
+            const row = `| \`${prop.fieldName}\` | ${prop.description} | ${prop.defaultValue || ''} |`;
             tableBody += `${row}\n`;
         }
 
@@ -234,7 +309,7 @@ ${this.generateAuthorSection('John Doe', 'john@example.com')}
             headings.push({text, level});
         }
 
-        let tableOfContents = '<details>\n<summary>Tabla de contenidos</summary>\n\n';
+        let tableOfContents = '## Table of Contents\n <details>\n<summary>Open Contents</summary>\n\n';
 
         headings.forEach((heading) => {
             const slug = slugify(heading.text);
@@ -244,7 +319,7 @@ ${this.generateAuthorSection('John Doe', 'john@example.com')}
 
         tableOfContents += '</details>';
 
-        return tableOfContents;
+        return markdownText.replace(this.TABLE_CONTENT_PLACEHOLDER, tableOfContents);
     }
 
     generateAuthorSection(authorName: string, githubUsername: string, linkedinUsername?: string) {
@@ -288,7 +363,7 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
 [issues-shield]: ${issuesBadgeUrl}
 [issues-url]: ${issuesUrl}`;
 
-        return badges;
+        return `${badges}`;
     }
 
     generateBadge(
@@ -317,7 +392,7 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
     }
 
     generateDescription(descriptions: string[]): string {
-        let markdownContent = '';
+        let markdownContent = '## About the Project\n\n';
         descriptions.forEach(description => {
             markdownContent += description + '\n\n';
         });
@@ -350,15 +425,15 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
 
         // Generic contribution information
         contributionSection += `\n### Ways to Contribute\n\n- Report bugs or issues by opening a new issue on our GitHub repository.
-        - Suggest new features or improvements by opening a new issue on our GitHub repository.
-        - Contribute code by forking the repository, making changes, and submitting a pull request.\n`;
+- Suggest new features or improvements by opening a new issue on our GitHub repository.
+- Contribute code by forking the repository, making changes, and submitting a pull request.\n`;
 
         // Contribution instructions
         contributionSection += `\n### Contribution Instructions\n\n1. Fork the repository.
-        2. Create a new branch for your feature or bug fix: \`git checkout -b my-feature-branch\`.
-        3. Make the necessary changes and commit them: \`git commit -am 'Add my new feature'\`.
-        4. Push your branch to your forked repository: \`git push origin my-feature-branch\`.
-        5. Open a pull request against the main repository, describing the changes you made and why they should be merged.\n`;
+2. Create a new branch for your feature or bug fix: \`git checkout -b my-feature-branch\`.
+3. Make the necessary changes and commit them: \`git commit -am 'Add my new feature'\`.
+4. Push your branch to your forked repository: \`git push origin my-feature-branch\`.
+5. Open a pull request against the main repository, describing the changes you made and why they should be merged.\n`;
 
         if (contributionGuidelinesLink) {
             contributionSection += `\nFor more information on how to contribute, please visit [Contribution Guidelines](${contributionGuidelinesLink}).\n`;
@@ -467,4 +542,131 @@ ${description}
 
         return stackSection;
     }
+
+    /**
+     * Generates the install section for a Markdown file.
+     * @param options - An object containing options for generating the install section.
+     * @returns The Markdown content for the install section.
+     */
+    generateInstallSection(options: InstallSectionOptions): string {
+        const {
+            projectName,
+            packageManager,
+            dependencies,
+            devDependencies,
+            installationSteps,
+            includeSetup = false,
+            setupSteps = [],
+            includeUsage = false,
+            usageSteps = [],
+        } = options;
+
+        let installSection = `## Installation\n\nTo install ${projectName}, follow these steps:\n\n`;
+
+        // Add setup section if requested
+        if (includeSetup && setupSteps.length > 0) {
+            installSection += `### Setup\n\nBefore installation, make sure you have the following prerequisites set up:\n\n`;
+            setupSteps.forEach((step, index) => {
+                installSection += `${index + 1}. ${step}\n\n`;
+            });
+        }
+
+        // Add step for installing dependencies
+        if (dependencies.length > 0) {
+            installSection += `1. Install the required dependencies:\n\n\`\`\`\n${packageManager} install ${dependencies.join(' ')}\n\`\`\`\n\n`;
+        }
+
+        // Add step for installing development dependencies
+        if (devDependencies.length > 0) {
+            installSection += `2. Install the development dependencies (if needed):\n\n\`\`\`\n${packageManager} install --dev ${devDependencies.join(' ')}\n\`\`\`\n\n`;
+        }
+
+        // Add additional installation steps
+        if (installationSteps.length > 0) {
+            installSection += `${dependencies.length > 0 || devDependencies.length > 0 ? '3. ' : '1. '}Additional steps:\n\n`;
+            installationSteps.forEach((step, index) => {
+                installSection += `${index + 1}. ${step}\n\n`;
+            });
+        }
+
+        // Add usage section if requested
+        if (includeUsage && usageSteps.length > 0) {
+            installSection += `## Usage\n\nAfter installation, you can use the project by following these steps:\n\n`;
+            usageSteps.forEach((step, index) => {
+                installSection += `${index + 1}. ${step}\n\n`;
+            });
+        }
+
+        return installSection;
+    }
+
+    /**
+     * Generates a links section for a Markdown file based on the headings.
+     * @param markdownContent - The Markdown content of the file.
+     * @returns The Markdown content for the links section.
+     */
+    generateLinksSection(markdownContent: string): string {
+        const headings = markdownContent.match(/\n## (.+)\n/g) || [];
+        const links = headings.map((heading) => {
+            const label = heading.replace(/\n## (.+)\n/, '$1');
+            const id = label.replace(/[^a-zA-Z0-9]+/g, '-').toLowerCase();
+            return {label, id};
+        });
+
+        if (links.length === 0) {
+            return '';
+        }
+
+        let linksSection = '<div align="center"><h4>';
+
+        links.forEach((link, index) => {
+            const {label, id} = link;
+            const isLastLink = index === links.length - 1;
+
+            linksSection += `<a href="#${id}">${label}</a>${isLastLink ? '' : ' • '}`;
+        });
+
+        linksSection += '</h4></div>';
+
+        return markdownContent.replace(this.LINKS_PLACEHOLDER, linksSection);
+    }
+
+    /**
+     * Generates a showcase section with image URLs and links formatted as a table.
+     * @param images - An array of image data objects with author and url properties.
+     * @returns The formatted showcase section as a string.
+     */
+    generateShowcaseSection(images: string[]): string {
+        if (images.length === 0) {
+            return '';
+        }
+
+        let showcaseSection = `## Showcase\n\n <center>\n\n<table>\n`;
+
+        const numRows = Math.ceil(images.length / 4);
+        for (let i = 0; i < numRows; i++) {
+            showcaseSection += '<tr>\n';
+
+            for (let j = 0; j < 4; j++) {
+                const index = i * 4 + j;
+                if (index < images.length) {
+                    const url = images[index];
+                    showcaseSection += `<td><a href="${url}"><img width="120" src="${url}"></a></td>\n`;
+                } else {
+                    showcaseSection += '<td></td>\n';
+                }
+            }
+
+            showcaseSection += '</tr>\n';
+        }
+
+        showcaseSection += '</table>\n\n</center>';
+
+        return showcaseSection;
+    }
+
+    generateLinksPlaceholder() {
+        return this.LINKS_PLACEHOLDER;
+    }
+
 }
