@@ -1,5 +1,5 @@
-<div [ngClass]="theme === 'light'? 'bg-white' : 'prose-invert bg-slate-900'"
-     class="prose prose-img:m-0 prose-hr:my-1 prose-a:inline-block prose-p:my-1 relative w-full px-6 py-6 shadow-xl shadow-slate-700/10 ring-1 ring-gray-800/5 md:mx-auto md:max-w-3xl lg:max-w-4xl ">
+<div [ngClass]="theme"
+     class="markdown-body prose-img:m-0 prose-hr:my-1 prose-a:inline-block prose-p:my-1 relative w-full px-6 py-6 shadow-xl shadow-slate-700/10 ring-1 ring-gray-800/5 md:mx-auto md:max-w-3xl lg:max-w-4xl ">
     <!--<div class="border-2 rounded-2xl w-full lg:w-[900px] p-10 my-8">-->
     <markdown (ready)="ready.next(text)"
               [data]="text"
