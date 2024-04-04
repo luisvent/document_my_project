@@ -1,0 +1,136 @@
+<div class="overflow-auto p-4">
+
+    <div class="flex flex-col">
+        <h6>Title</h6>
+        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Project Title"
+               type="text">
+
+    </div>
+
+    <div class="flex flex-col">
+        <h6>Repository Url</h6>
+        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Project Title"
+               type="text">
+
+    </div>
+
+    <div class="flex flex-col">
+        <h6>Short Description</h6>
+        <textarea
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Project Description..."
+                rows="4"></textarea>
+
+    </div>
+
+    <div class="flex flex-col">
+        <h6>Description</h6>
+        <textarea
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Project Description..."
+                rows="4"></textarea>
+
+    </div>
+
+    <div class="flex items-center mb-4">
+        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               id="npm-checkbox" type="checkbox"
+               value="">
+        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="npm-checkbox">Add NPM
+            Badges</label>
+    </div>
+
+    <div class="flex items-center mb-4">
+        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               id="github-checkbox" type="checkbox"
+               value="">
+        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="github-checkbox">Add
+            GitHub Repository Badges</label>
+    </div>
+
+    <div class="flex items-center mb-4">
+        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               id="content-table-checkbox" type="checkbox"
+               value="">
+        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="content-table-checkbox">Add
+            Table of Contents</label>
+    </div>
+
+
+    <div class="flex flex-col">
+        <h6>Logo Url</h6>
+        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Project Title"
+               type="text">
+
+    </div>
+
+    <div class="flex flex-col">
+        <h6>Screenshots Url</h6>
+        <textarea
+                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="Project Description..."
+                rows="4"></textarea>
+
+    </div>
+
+
+    <div class="flex items-center mb-4">
+        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               id="stack-checkbox" type="checkbox"
+               value="">
+        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="stack-checkbox">Add Tech
+            Stack</label>
+    </div>
+
+    <div class="flex flex-col">
+
+        <app-multi-picker
+                (selectedItemsChange)="selectedTechnologies($event)"
+                [items]="technologies"
+                title="technologies"
+        ></app-multi-picker>
+    </div>
+
+
+    <div class="flex items-center mb-4">
+        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+               id="contribution-checkbox" type="checkbox"
+               value="">
+        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="contribution-checkbox">Add
+            Contribution info</label>
+    </div>
+
+    <div class="flex flex-col">
+        <h6>Author Name</h6>
+        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Project Title"
+               type="text">
+
+    </div>
+
+    <div class="flex flex-col">
+        <h6>Author Github</h6>
+        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               placeholder="Project Title"
+               type="text">
+
+    </div>
+
+</div>
+<button (click)="generateMarkdown()"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        type="button">
+    <svg class="mr-2" fill="none" height="20" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+         stroke-width="1.5"
+         viewBox="0 0 24 24" width="20">
+        <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+        <path d="M17 17m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"/>
+        <path d="M17 13v4h6"/>
+        <path d="M12 3v4a1 1 0 0 0 1 1h6"/>
+        <path d="M11.5 21h-6.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v2m0 3v4"/>
+    </svg>
+    Generate
+</button>

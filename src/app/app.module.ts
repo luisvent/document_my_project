@@ -14,6 +14,7 @@ import {MdPreviewComponent} from "./components/markdown/md-preview/md-preview.co
 import {MultiPickerComponent} from "./components/multi-picker/multi-picker.component";
 import {RawCodeSnippetComponent} from "./components/raw-code-snippet/raw-code-snippet.component";
 import {MdCodeSnippetComponent} from "./components/markdown/md-code-snippet/md-code-snippet.component";
+import {FormComponent} from './components/form/form.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import {MdCodeSnippetComponent} from "./components/markdown/md-code-snippet/md-c
         MultiPickerComponent,
         RawCodeSnippetComponent,
         MdCodeSnippetComponent,
-        ToastComponent
+        ToastComponent,
+        FormComponent
     ],
     imports: [
         BrowserModule,

@@ -4,6 +4,7 @@ import {UtilsService} from "../../services/utils.service";
 export interface PickerItem {
     name: string;
     value: string;
+    description: string;
 }
 
 @Component({
