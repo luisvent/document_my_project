@@ -1,0 +1,28 @@
+<form class="my-6">
+    <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+        <div class="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+            <label class="sr-only" for="comment">Your comment</label>
+            <textarea
+                    class="w-full font-mono text-xs px-0 text-gray-900 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                    id="comment"
+                    placeholder="Write a comment..."
+                    required rows="24">{{ code }}</textarea>
+        </div>
+        <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+
+            <div class="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
+                <button (click)="copyCode()"
+                        class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600"
+                        type="button">
+                    <svg fill="none" height="24" stroke="#2c3e50" stroke-linecap="round" stroke-linejoin="round"
+                         stroke-width="1.5"
+                         viewBox="0 0 24 24" width="24">
+                        <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+                        <path d="M7 7m0 2.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667z"/>
+                        <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
