@@ -84,25 +84,24 @@
         </div>
         <div></div>
         <div></div>
-
+        <!--        hidden buttons-->
         <div class="w-full flex justify-end col-span-1">
-            <button class="hidden toggle-rtl flex items-center w-9 h-9 mr-3 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            <button (click)="downloadReadme()"
+                    class="toggle-rtl flex items-center w-9 h-9 mr-3 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
                     data-toggle-direction="ltr"
                     data-tooltip-target="clipboard-example-toggle-rtl" hidden
                     type="button">
-                RTL
+                <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                     stroke-width="1.5"
+                     viewBox="0 0 24 24" width="20">
+                    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+                    <path d="M14 3v4a1 1 0 0 0 1 1h4"/>
+                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/>
+                    <path d="M12 17v-6"/>
+                    <path d="M9.5 14.5l2.5 2.5l2.5 -2.5"/>
+                </svg>
             </button>
-            <div class="hidden absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                 data-popper-placement="top"
 
-                 id="clipboard-example-toggle-rtl"
-                 role="tooltip"
-                 style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(1048px, 31px);">
-                <span class="tooltip-text">Toggle RTL mode</span>
-                <div class="tooltip-arrow" data-popper-arrow=""
-                     style="position: absolute; left: 0px; transform: translate(67px, 0px);"></div>
-            </div>
-            <!--        hidden buttons-->
 
             <button (click)="switchTheme()"
                     class="flex items-center w-9 h-9 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
@@ -120,18 +119,8 @@
                      fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-11a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1Zm0 12a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1ZM4.343 5.757a1 1 0 0 0 1.414-1.414L4.343 2.929a1 1 0 0 0-1.414 1.414l1.414 1.414Zm11.314 8.486a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM4 10a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm15-1h-2a1 1 0 1 0 0 2h2a1 1 0 0 0 0-2ZM4.343 14.243l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414a1 1 0 0 0-1.414-1.414ZM14.95 6.05a1 1 0 0 0 .707-.293l1.414-1.414a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 .707 1.707Z"></path>
                 </svg>
-                <span class="sr-only">Toggle dark/light mode</span>
             </button>
 
-            <div class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
-                 data-popper-placement="top"
-                 id="clipboard-example-toggle-dark-mode-tooltip"
-                 role="tooltip"
-                 style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate(1094px, 31px);">
-                <span class="tooltip-text">Toggle dark mode</span>
-                <div class="tooltip-arrow" data-popper-arrow=""
-                     style="position: absolute; left: 0px; transform: translate(69px, 0px);"></div>
-            </div>
         </div>
     </div>
 </div>

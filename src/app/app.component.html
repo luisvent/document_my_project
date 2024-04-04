@@ -15,7 +15,15 @@
             </div>
 
             <div class="flex flex-col">
-                <h6>Description</h6>
+                <h6>Repository Url</h6>
+                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Project Title"
+                       type="text">
+
+            </div>
+
+            <div class="flex flex-col">
+                <h6>Short Description</h6>
                 <textarea
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Project Description..."
@@ -24,7 +32,41 @@
             </div>
 
             <div class="flex flex-col">
-                <h6>Main Image Url</h6>
+                <h6>Description</h6>
+                <textarea
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Project Description..."
+                        rows="4"></textarea>
+
+            </div>
+
+            <div class="flex items-center mb-4">
+                <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                       id="npm-checkbox" type="checkbox"
+                       value="">
+                <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="npm-checkbox">Add NPM
+                    Badges</label>
+            </div>
+
+            <div class="flex items-center mb-4">
+                <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                       id="github-checkbox" type="checkbox"
+                       value="">
+                <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="github-checkbox">Add
+                    GitHub Repository Badges</label>
+            </div>
+
+            <div class="flex items-center mb-4">
+                <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                       id="content-table-checkbox" type="checkbox"
+                       value="">
+                <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="content-table-checkbox">Add
+                    Table of Contents</label>
+            </div>
+
+
+            <div class="flex flex-col">
+                <h6>Logo Url</h6>
                 <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="Project Title"
                        type="text">
@@ -40,6 +82,15 @@
 
             </div>
 
+
+            <div class="flex items-center mb-4">
+                <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                       id="stack-checkbox" type="checkbox"
+                       value="">
+                <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="stack-checkbox">Add Tech
+                    Stack</label>
+            </div>
+
             <div class="flex flex-col">
 
                 <app-multi-picker
@@ -49,11 +100,29 @@
                 ></app-multi-picker>
             </div>
 
-            <div class="form-control">
-                <label class="label cursor-pointer">
-                    <span class="label-text">Add License</span>
-                    <input checked class="toggle" type="checkbox"/>
-                </label>
+
+            <div class="flex items-center mb-4">
+                <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                       id="contribution-checkbox" type="checkbox"
+                       value="">
+                <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="contribution-checkbox">Add
+                    Contribution info</label>
+            </div>
+
+            <div class="flex flex-col">
+                <h6>Author Name</h6>
+                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Project Title"
+                       type="text">
+
+            </div>
+
+            <div class="flex flex-col">
+                <h6>Author Github</h6>
+                <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Project Title"
+                       type="text">
+
             </div>
 
         </div>

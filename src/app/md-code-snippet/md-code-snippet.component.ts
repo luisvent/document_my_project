@@ -29,4 +29,9 @@ export class MdCodeSnippetComponent {
     switchTheme() {
         this.theme = this.theme === 'dark' ? 'light' : 'dark';
     }
+
+    downloadReadme() {
+        this.utilsService.saveTextAsFile(this.text);
+        this.toastService.success('File Downloaded!');
+    }
 }
