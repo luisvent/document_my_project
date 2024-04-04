@@ -127,16 +127,17 @@
         <div class="grid w-full grid-cols-2 border-b border-gray-200 bg-gray-50 rounded-t-md dark:bg-gray-700 dark:border-gray-600">
             <ul class="flex text-sm font-medium text-center text-gray-500 dark:text-gray-400">
                 <li>
-                    <button class="inline-block w-full p-2 px-3 text-gray-800 bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 border-r border-gray-200 dark:text-white dark:bg-gray-800 dark:border-gray-600"
-                            data-toggle-html-code=""
+                    <button (click)="switchTab('raw')" [ngClass]="tabEnabled === 'raw'? 'bg-gray-200' : 'bg-gray-100'"
+                            class="inline-block w-full p-2 px-3 text-gray-800 bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 border-r border-gray-200 dark:text-white dark:bg-gray-800 dark:border-gray-600"
                             type="button">
                         Raw
                     </button>
                 </li>
 
                 <li>
-                    <button class="inline-block w-full p-2 px-3 text-gray-800 bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 border-r border-gray-200 dark:text-white dark:bg-gray-800 dark:border-gray-600 !bg-gray-200 dark:!bg-gray-700"
-                            data-toggle-javascript-code=""
+                    <button (click)="switchTab('preview')"
+                            [ngClass]="tabEnabled === 'preview'? 'bg-gray-200' : 'bg-gray-100'"
+                            class="inline-block w-full p-2 px-3 text-gray-800 bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 border-r border-gray-200 dark:text-white dark:bg-gray-800 dark:border-gray-600"
                             type="button">
                         Preview
                     </button>
@@ -168,18 +169,13 @@
             </div>
         </div>
         <div class="relative">
-            <div class="overflow-hidden" data-code-wrapper="" tabindex="-1">
-                <div class="" data-code-wrapper-javascript="">
-                    <div class="highlight">
-                        <app-md-preview [text]="text"></app-md-preview>
-                    </div>
-                </div>
+            <div [hidden]="tabEnabled !== 'preview'" class="overflow-hidden" tabindex="-1">
+                <app-md-preview [text]="text"></app-md-preview>
             </div>
-            <button class="absolute bottom-0 left-0 py-2.5 px-5 w-full text-sm font-medium text-gray-900 bg-gray-100 border-t border-gray-200 hover:bg-gray-100 hover:text-blue-700 dark:bg-gray-700 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 hidden"
-                    data-expand-code=""
-                    type="button">
-                Expand code
-            </button>
+            <div [hidden]="tabEnabled !== 'raw'" class="font-mono bg-white text-xs p-10 whitespace-pre-wrap"
+                 tabindex="-1">
+                {{ text }}
+            </div>
         </div>
     </div>
 </div>
