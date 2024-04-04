@@ -36,7 +36,7 @@ export class ToastService {
     }
 
     private removeToast(toast: Toast) {
-        setTimeout(() => this.close(toast.id), 2000); // Remove toast after 3 seconds.
+        setTimeout(() => this.close(toast.id), 2000);
     }
 
 }

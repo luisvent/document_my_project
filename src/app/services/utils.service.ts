@@ -32,4 +32,21 @@ export class UtilsService {
     guid() {
         return 'id-' + Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     }
+
+    /**
+     * Saves the provided text as a file.
+     * @param text - The text content to be saved.
+     * @param fileName - The desired name for the file.
+     * @param fileType - The file type or extension (e.g., '.txt', '.md', '.html').
+     */
+    saveTextAsFile(text: string, fileName: string = 'readme', fileType: string = 'md') {
+        const blob = new Blob([text], {type: `text/${fileType.replace('.', '')}`});
+        const anchor = document.createElement('a');
+        anchor.download = `${fileName}.${fileType}`;
+        anchor.href = window.URL.createObjectURL(blob);
+        anchor.dataset['downloadedFilename'] = `${fileName}${fileType}`;
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    }
 }
