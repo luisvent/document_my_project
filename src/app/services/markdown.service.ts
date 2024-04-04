@@ -1,34 +1,13 @@
 import {Injectable} from "@angular/core";
-
-interface MarkdownData {
-    fileName: string;
-    title: string;
-    headings: { text: string; level: number; }[];
-    descriptions: string[];
-    images: { url: string; alt: string; }[];
-    codeBlocks: { language: string; code: string; }[];
-}
-
-export enum LicenseType {
-    MIT = 'MIT',
-    Apache2 = 'Apache-2.0',
-    GPL3 = 'GPL-3.0',
-    BSD3 = 'BSD-3-Clause',
-    Custom = 'Custom'
-}
-
-interface InstallSectionOptions {
-    projectName: string;
-    packageManager: string;
-    dependencies: string[];
-    devDependencies: string[];
-    installationSteps: string[];
-    includeSetup?: boolean;
-    setupSteps?: string[];
-    includeUsage?: boolean;
-    usageSteps?: string[];
-}
-
+import {LicenseType} from "../enums/license-type.enum";
+import {InstallationOptions} from "../interfaces/installation-options.interface";
+import {AuthorData} from "../interfaces/author-data.interface";
+import {GitHubOptions} from "../interfaces/github-options.interface";
+import {TechnologyOptions} from "../interfaces/technology-options.interface";
+import {FeatureOptions} from "../interfaces/feature-options.interface";
+import {LicenseOptions} from "../interfaces/license-options.interface";
+import {AcknowledgeOptions} from "../interfaces/acknowledge-options.interface";
+import {ContributionOptions} from "../interfaces/contribution-options.interface";
 
 @Injectable({
     providedIn: 'root'
@@ -41,49 +20,11 @@ export class MarkdownService {
     constructor() {
     }
 
-
-    // region test
     test() {
         // Sample data
         const npmPackageName = 'my-awesome-package';
         const githubRepo = 'meta_tag_generator';
         const githubOwner = 'luisvent';
-
-
-// Generate NPM badges
-        const npmBadges = this.generateNpmBadges(npmPackageName, {
-            npmVersion: {
-                color: '0470FF',
-                logoColor: 'white'
-            },
-            npmDownloads: {
-                color: '67ACF3'
-            },
-            bundleSize: {
-                color: 'F9DBBC'
-            }
-        });
-
-// Generate GitHub badges
-        const githubBadges = this.generateGitHubBadges(githubRepo, githubOwner);
-
-// Generate a custom badge
-        const customBadge = this.generateBadge('Custom Badge', 'https://example.com', 'brightgreen', 'github', 'white');
-
-// Generate a parameters table
-        const parametersTable = this.generateParametersTable([
-            {fieldName: 'name', description: 'Name of the user', defaultValue: 'John Doe'},
-            {fieldName: 'age', description: 'Age of the user'},
-            {fieldName: 'isAdmin', description: 'Whether the user is an admin or not', defaultValue: 'false'}
-        ]);
-
-// Sample data for other components
-        const headings = [
-            {text: 'Introduction', level: 1},
-            {text: 'Installation', level: 2},
-            {text: 'Usage', level: 2},
-            {text: 'Examples', level: 3}
-        ];
 
         const descriptions = [
             'This is a sample markdown file generated using the MarkdownService.',
@@ -91,13 +32,7 @@ export class MarkdownService {
         ];
 
         const images = [
-            {url: 'https://example.com/image1.png', alt: 'Image 1'},
-            {url: 'https://example.com/image2.jpg', alt: 'Image 2'}
-        ];
-
-        const codeBlocks = [
-            {language: 'javascript', code: 'console.log("Hello, World!");'},
-            {language: 'typescript', code: 'const message: string = "Hello, TypeScript!";'}
+            {url: 'https://placehold.co/600x400', alt: 'Image 1'}
         ];
 
         const contributionSection = {
@@ -136,9 +71,11 @@ export class MarkdownService {
             {name: 'Sass', value: 'sass', description: "A CSS extension language for stylesheets"},
         ];
 
-// Generate markdown content
-
         const sections = [
+            this.generateGitHubBadges({
+                username: 'John Doe',
+                repo: 'my-awesome-repo',
+            }),
             this.generateIntroductionSection('My package', 'Test package introduction just for testing',
                 'https//:url.com', 'https://placehold.co/600x400'),
             this.generateNpmBadges(npmPackageName, {
@@ -153,9 +90,8 @@ export class MarkdownService {
                     color: 'F9DBBC'
                 }
             }),
-            this.generateGitHubBadges(githubRepo, githubOwner),
             this.generateLinksPlaceholder(),
-            this.generateImages(images),
+            this.generateCenteredImages(images),
             this.generateTableContentPlaceholder(),
             this.generateTableOfContentsFromMarkdown(''),
             this.generateDescription(descriptions),
@@ -180,7 +116,12 @@ export class MarkdownService {
             ]),
             this.generateAcknowledgementsSection(acknowledgements),
             this.generateContributionSection(contributionSection),
-            this.generateAuthorSection('John Doe', 'john@example.com'),
+            this.generateAuthorSection({
+                name: 'John Doe',
+                email: 'john@example.com',
+                url: 'https://example.com',
+                github: 'john',
+            }),
             this.generateLicenseSection(licenseSection),
             this.generateWatermark()
         ];
@@ -195,47 +136,7 @@ export class MarkdownService {
         result = this.generateLinksSection(result);
 
         return result;
-        const markdownContent = `${this.generateIntroductionSection('My package', 'Test package introduction just for testing', 'https//:url.com', 'https//:url.com')}
-        
-${npmBadges}
-
-${githubBadges}
-
-${customBadge}
-
-${parametersTable}
-
-${this.generateTableOfContentsFromMarkdown(`${this.generateDescription(descriptions)}${this.generateImages(images)}${this.generateCodeBlock(codeBlocks)}`)}
-
-${this.generateHeading(headings[0])}
-${this.generateDescription(descriptions)}
-
-${this.generateHeading(headings[1])}
-To install this package, run \`npm install ${npmPackageName}\`.
-
-${this.generateHeading(headings[2])}
-${this.generateImages(images)}
-
-${this.generateHeading(headings[3])}
-${this.generateCodeBlock(codeBlocks)}
-
-${this.generateContributionSection(contributionSection)}
-
-${this.generateTechStackSection(techStack)}
-
-${this.generateAcknowledgementsSection(acknowledgements)}
-
-${this.generateLicenseSection(licenseSection)}
-
-${this.generateFeaturesSection(features)}
-
-${this.generateAuthorSection('John Doe', 'john@example.com')}
-`;
-
-        console.log(markdownContent);
     }
-
-    // endregion
 
     generateTableContentPlaceholder() {
         return this.TABLE_CONTENT_PLACEHOLDER;
@@ -323,48 +224,30 @@ ${this.generateAuthorSection('John Doe', 'john@example.com')}
         return markdownText.replace(this.TABLE_CONTENT_PLACEHOLDER, tableOfContents);
     }
 
-    generateAuthorSection(authorName: string, githubUsername: string, linkedinUsername?: string) {
+    generateAuthorSection(author: AuthorData) {
         const aboutAuthorSection = `
 ## About the Author
 
-**${authorName}**
+**${author.name}**
 
-This project was created by ${authorName}. Connect with me on [GitHub](https://github.com/${githubUsername}) ${linkedinUsername ? `and [LinkedIn](https://www.linkedin.com/in/${linkedinUsername}/)` : ''} to learn more about my projects and professional background.
+This project was created by ${author.name}. Connect with me on [GitHub](https://github.com/${author.github}) ${author.likedIn ? `and [LinkedIn](https://www.linkedin.com/in/${author.likedIn}/)` : ''} to learn more about my projects and professional background.
 `;
 
         return aboutAuthorSection;
     }
 
     generateGitHubBadges(
-        repo: string,
-        owner: string,
+        github: GitHubOptions,
         badgeStyle: 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' = 'for-the-badge'
     ): string {
-        const contributorsUrl = `https://github.com/${owner}/${repo}/graphs/contributors`;
-        const forksUrl = `https://github.com/${owner}/${repo}/network/members`;
-        const starsUrl = `https://github.com/${owner}/${repo}/stargazers`;
-        const issuesUrl = `https://github.com/${owner}/${repo}/issues`;
 
-        const contributorsBadgeUrl = `https://img.shields.io/github/contributors/${owner}/${repo}.svg?style=${badgeStyle}`;
-        const forksBadgeUrl = `https://img.shields.io/github/forks/${owner}/${repo}.svg?style=${badgeStyle}`;
-        const starsBadgeUrl = `https://img.shields.io/github/stars/${owner}/${repo}.svg?style=${badgeStyle}`;
-        const issuesBadgeUrl = `https://img.shields.io/github/issues/${owner}/${repo}.svg?style=${badgeStyle}`;
+        const badges = `
+        <p align="center"><a href="https://github.com/${github.username}/${github.repo}/graphs/contributors"><img src="https://img.shields.io/github/contributors/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Contributors"></a>
+        <a href="https://github.com/${github.username}/${github.repo}/network/members"><img src="https://img.shields.io/github/forks/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Forks"></a>
+        <a href="https://github.com/${github.username}/${github.repo}/stargazers"><img src="https://img.shields.io/github/stars/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Stargazers"></a>
+        <a href="https://github.com/${github.username}/${github.repo}/issues"><img src="https://img.shields.io/github/issues/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Issues"></a></p><br/><br/>`;
 
-        const badges = `[![Contributors][contributors-shield]][contributors-url]
-        [![Forks][forks-shield]][forks-url]
-        [![Stargazers][stars-shield]][stars-url]
-        [![Issues][issues-shield]][issues-url]
-        
-[contributors-shield]: ${contributorsBadgeUrl}
-[contributors-url]: ${contributorsUrl}
-[forks-shield]: ${forksBadgeUrl}
-[forks-url]: ${forksUrl}
-[stars-shield]: ${starsBadgeUrl}
-[stars-url]: ${starsUrl}
-[issues-shield]: ${issuesBadgeUrl}
-[issues-url]: ${issuesUrl}`;
-
-        return `${badges}`;
+        return badges;
     }
 
     generateBadge(
@@ -408,6 +291,14 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
         return markdownContent;
     }
 
+    generateCenteredImages(images: { url: string; alt: string; }[]): string {
+        let markdownContent = '<p align="center">';
+        images.forEach(image => {
+            markdownContent += `<img src="${image.url}" alt="${image.alt}"/>`;
+        });
+        return markdownContent + '</p>';
+    }
+
     generateCodeBlock(codeBlocks: { language: string; code: string; }[]): string {
         let markdownContent = '';
         codeBlocks.forEach(codeBlock => {
@@ -416,12 +307,8 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
         return markdownContent;
     }
 
-    generateContributionSection(section: {
-        title: string;
-        description: string;
-        contributionGuidelinesLink?: string;
-    }): string {
-        const {title, description, contributionGuidelinesLink} = section;
+    generateContributionSection(contribution: ContributionOptions): string {
+        const {title, description, contributionGuidelinesLink} = contribution;
         let contributionSection = `## ${title}\n\n${description}\n`;
 
         // Generic contribution information
@@ -443,14 +330,10 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
         return contributionSection;
     }
 
-    generateAcknowledgementsSection(items: {
-        title: string;
-        url: string;
-        description: string;
-    }[]): string {
+    generateAcknowledgementsSection(acknowledgements: AcknowledgeOptions[]): string {
         let acknowledgementsSectionContent = '## Acknowledgements\n\n';
 
-        items.forEach((item) => {
+        acknowledgements.forEach((item) => {
             const {title, url, description} = item;
             acknowledgementsSectionContent += `- [${title}](${url}) - ${description}\n`;
         });
@@ -458,10 +341,7 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
         return acknowledgementsSectionContent;
     }
 
-    generateLicenseSection(licenseSection: {
-        type: LicenseType;
-        customText?: string;
-    }): string {
+    generateLicenseSection(licenseSection: LicenseOptions): string {
         const {type, customText} = licenseSection;
         let licenseSectionContent = '## License\n\n';
 
@@ -492,10 +372,7 @@ This project was created by ${authorName}. Connect with me on [GitHub](https://g
         return licenseSectionContent;
     }
 
-    generateFeaturesSection(features: {
-        title: string;
-        description: string;
-    }[]): string {
+    generateFeaturesSection(features: FeatureOptions[]): string {
         let featuresSection = '## Features\n\n';
 
         features.forEach((feature, index) => {
@@ -522,7 +399,7 @@ ${description}
 `
     }
 
-    identifyTechnologies(description: string, technologies: { name: string; value: string }[]): string[] {
+    identifyTechnologies(description: string, technologies: TechnologyOptions[]): string[] {
         const foundTechnologies: string[] = [];
 
         technologies.forEach(tech => {
@@ -534,7 +411,7 @@ ${description}
         return foundTechnologies;
     }
 
-    generateTechStackSection(technologies: { name: string; description: string; value: string; }[]) {
+    generateTechStackSection(technologies: TechnologyOptions[]) {
         let stackSection = `## Stack Tech\n`;
 
         technologies.forEach(tech => {
@@ -549,7 +426,7 @@ ${description}
      * @param options - An object containing options for generating the install section.
      * @returns The Markdown content for the install section.
      */
-    generateInstallSection(options: InstallSectionOptions): string {
+    generateInstallSection(options: InstallationOptions): string {
         const {
             projectName,
             packageManager,
@@ -642,17 +519,18 @@ ${description}
             return '';
         }
 
+        const columns = 2;
         let showcaseSection = `## Showcase\n\n <center>\n\n<table>\n`;
 
-        const numRows = Math.ceil(images.length / 4);
+        const numRows = Math.ceil(images.length / columns);
         for (let i = 0; i < numRows; i++) {
             showcaseSection += '<tr>\n';
 
-            for (let j = 0; j < 4; j++) {
-                const index = i * 4 + j;
+            for (let j = 0; j < columns; j++) {
+                const index = i * columns + j;
                 if (index < images.length) {
                     const url = images[index];
-                    showcaseSection += `<td><a href="${url}"><img width="120" src="${url}"></a></td>\n`;
+                    showcaseSection += `<td><a href="${url}"><img width="320" src="${url}"></a></td>\n`;
                 } else {
                     showcaseSection += '<td></td>\n';
                 }

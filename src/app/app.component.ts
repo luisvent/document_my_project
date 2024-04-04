@@ -5,10 +5,10 @@ import {selectDisplayMarkdown, selectEditorDescription} from "./store/selectors/
 import {readmeDemo} from "../data/data";
 import {AppState} from "./store/state.interface";
 import {initFlowbite} from "flowbite";
-import {PickerItem} from "./multi-picker/multi-picker.component";
 import {MarkdownService} from "./services/markdown.service";
 import {UtilsService} from "./services/utils.service";
-import {Toast, ToastService} from "./services/toast.service";
+import {ToastService} from "./services/toast.service";
+import {PickerItem} from "./components/multi-picker/multi-picker.component";
 
 @Component({
     selector: 'app-root',
@@ -117,7 +117,4 @@ export class AppComponent implements OnInit {
         console.log(technologies)
     }
 
-    generateToast(toast: Toast) {
-
-    }
 }

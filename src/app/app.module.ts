@@ -6,14 +6,14 @@ import {StoreModule} from '@ngrx/store';
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {reducers} from "./store/reducers";
 import {MarkdownModule} from "ngx-markdown";
-import {MdPreviewComponent} from './md-preview/md-preview.component';
-import {BackgroundComponent} from './background/background.component';
+import {BackgroundComponent} from './components/background/background.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {MultiPickerComponent} from './multi-picker/multi-picker.component';
-import {RawCodeSnippetComponent} from './raw-code-snippet/raw-code-snippet.component';
-import {MdCodeSnippetComponent} from './md-code-snippet/md-code-snippet.component';
 import {ToastComponent} from './toast/toast.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MdPreviewComponent} from "./components/markdown/md-preview/md-preview.component";
+import {MultiPickerComponent} from "./components/multi-picker/multi-picker.component";
+import {RawCodeSnippetComponent} from "./components/raw-code-snippet/raw-code-snippet.component";
+import {MdCodeSnippetComponent} from "./components/markdown/md-code-snippet/md-code-snippet.component";
 
 @NgModule({
     declarations: [

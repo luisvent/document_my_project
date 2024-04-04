@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {UtilsService} from "../services/utils.service";
-import {ToastService} from "../services/toast.service";
+import {UtilsService} from "../../../services/utils.service";
+import {ToastService} from "../../../services/toast.service";
 
 @Component({
     selector: 'app-md-code-snippet',
