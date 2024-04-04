@@ -472,7 +472,6 @@ ${description}
             stackSection += `- ${this.generateBadge(tech.name, 'https://www.typescriptlang.org/', tech.mainColor.replace('#', ''), tech.value, tech.description)}}\n`;
         });
 
-        console.log(stackSection)
         return stackSection;
     }
 

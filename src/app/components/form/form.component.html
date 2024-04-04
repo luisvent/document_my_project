@@ -1,91 +1,116 @@
 <div class="overflow-auto p-4">
+    <app-section-title [title]="'About'"></app-section-title>
 
     <div class="flex flex-col">
         <h6>Title</h6>
-        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Project Title"
-               type="text">
-
-    </div>
-
-    <div class="flex flex-col">
-        <h6>Repository Url</h6>
-        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Project Title"
-               type="text">
-
+        <app-form-field
+                (change)="inputChange('title', $event.target)"
+                [placeholder]="'Project Title'"
+        ></app-form-field>
     </div>
 
     <div class="flex flex-col">
         <h6>Short Description</h6>
-        <textarea
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Project Description..."
-                rows="4"></textarea>
-
+        <app-form-field
+                (change)="inputChange('short-description', $event.target)"
+                [placeholder]="'Project headline...'"
+                [textarea]="true"
+        ></app-form-field>
     </div>
 
     <div class="flex flex-col">
         <h6>Description</h6>
-        <textarea
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Project Description..."
-                rows="4"></textarea>
-
+        <app-form-field
+                (change)="inputChange('description', $event.target)"
+                [placeholder]="'Project Description...'"
+                [textarea]="true"
+        ></app-form-field>
     </div>
 
-    <div class="flex items-center mb-4">
-        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-               id="npm-checkbox" type="checkbox"
-               value="">
-        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="npm-checkbox">Add NPM
-            Badges</label>
+    <app-section-title [title]="'Navigation'"></app-section-title>
+
+    <app-form-checkbox
+            (change)=" inputChange('content-table', $event.target)"
+            [title]="'Add Table of Contents'"
+    ></app-form-checkbox>
+
+    <app-form-checkbox
+            (change)=" inputChange('navigation-links', $event.target)"
+            [title]="'Add Navigation Links'"
+    ></app-form-checkbox>
+
+    <app-section-title [title]="'Repositories'"></app-section-title>
+
+    <div class="flex flex-col">
+        <h6>Repository</h6>
+        <app-form-field
+            #inputRepository
+            (change)="inputChange('repository-url', $event.target)"
+            [placeholder]="'Repository url'"
+        ></app-form-field>
     </div>
 
-    <div class="flex items-center mb-4">
-        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-               id="github-checkbox" type="checkbox"
-               value="">
-        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="github-checkbox">Add
-            GitHub Repository Badges</label>
+    <app-form-checkbox
+            (change)=" inputChange('repository-badges', $event.target)"
+            [disabled]="inputRepository.value === ''"
+            [ngClass]="{'hidden': inputRepository.value === ''}"
+            [title]="'Add GitHub Repository Badges'"
+    ></app-form-checkbox>
+
+    <div class="flex flex-col">
+        <h6>NPM Package</h6>
+        <app-form-field
+            #inputNpm
+            (change)="inputChange('npm-url', $event.target)"
+            [placeholder]="'NPM Package url'"
+        ></app-form-field>
     </div>
 
-    <div class="flex items-center mb-4">
-        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-               id="content-table-checkbox" type="checkbox"
-               value="">
-        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="content-table-checkbox">Add
-            Table of Contents</label>
-    </div>
+    <app-form-checkbox
+            (change)=" inputChange('npm-badges', $event.target)"
+            [disabled]="inputNpm.value === ''"
+            [ngClass]="{'hidden': inputNpm.value === ''}"
+            [title]="'Add NPM Badges'"
+    ></app-form-checkbox>
 
+    <app-section-title [title]="'Images'"></app-section-title>
 
     <div class="flex flex-col">
         <h6>Logo Url</h6>
-        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Project Title"
-               type="text">
+        <app-form-field
+                (change)="inputChange('logo-url', $event.target)"
+                [placeholder]="'Logo image url'"
+        ></app-form-field>
+    </div>
 
+    <div class="flex flex-col">
+        <h6>Main Image</h6>
+        <app-form-field
+                (change)="inputChange('main-img-url', $event.target)"
+                [placeholder]="'Main image url'"
+        ></app-form-field>
     </div>
 
     <div class="flex flex-col">
         <h6>Screenshots Url</h6>
-        <textarea
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Project Description..."
-                rows="4"></textarea>
+        <app-form-field
+                (change)="inputChange('screenshots-url', $event.target)"
+                [placeholder]="'Screenshots url'"
+                [textarea]="true"
+        ></app-form-field>
 
     </div>
 
+    <app-section-title [title]="'Technologies'"></app-section-title>
 
-    <div class="flex items-center mb-4">
-        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-               id="stack-checkbox" type="checkbox"
-               value="">
-        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="stack-checkbox">Add Tech
-            Stack</label>
-    </div>
+    <app-form-checkbox
+        #techStack
+        (change)=" inputChange('tech-stack', $event.target)"
+        [title]="'Add Tech Stack'"
+    ></app-form-checkbox>
 
-    <div class="flex flex-col">
+    <div [ngClass]="techStack.value? '' : 'hidden'"
+         class="flex flex-col">
 
         <app-multi-picker
                 (selectedItemsChange)="selectedTechnologies($event)"
@@ -94,30 +119,61 @@
         ></app-multi-picker>
     </div>
 
+    <app-section-title [title]="'Contributions'"></app-section-title>
 
-    <div class="flex items-center mb-4">
-        <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-               id="contribution-checkbox" type="checkbox"
-               value="">
-        <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="contribution-checkbox">Add
-            Contribution info</label>
+    <div class="flex flex-col">
+        <app-form-checkbox
+            #contributionCheckbox
+            (change)=" inputChange('contribution', $event.target)"
+            [title]="'Add Contribution info'"
+        ></app-form-checkbox>
+        <app-form-field
+                (change)="inputChange('contribution-guideline', $event.target)"
+                [ngClass]="{'hidden': !contributionCheckbox.value}"
+                [placeholder]="'Guidelines Url (Optional)'"
+        ></app-form-field>
+    </div>
+
+    <app-section-title [title]="'Author'"></app-section-title>
+
+    <div class="flex flex-col">
+        <h6>Name</h6>
+        <app-form-field
+                (change)="inputChange('author-name', $event.target)"
+                [placeholder]="'Author Name'"
+        ></app-form-field>
+
     </div>
 
     <div class="flex flex-col">
-        <h6>Author Name</h6>
-        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Project Title"
-               type="text">
-
+        <h6>Github</h6>
+        <app-form-field
+                (change)="inputChange('author-name', $event.target)"
+                [placeholder]="'Author Username'"
+        ></app-form-field>
     </div>
 
-    <div class="flex flex-col">
-        <h6>Author Github</h6>
-        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-               placeholder="Project Title"
-               type="text">
+    <app-section-title [title]="'License'"></app-section-title>
 
-    </div>
+    <app-form-checkbox
+        #licenseCheckbox
+        (change)=" inputChange('license', $event.target)"
+        [title]="'Add License'"
+    ></app-form-checkbox>
+
+    <app-form-radio
+        #licenseType
+        (change)=" inputChange('licenseType', $event.target)"
+        [ngClass]="{'hidden': !licenseCheckbox.value}"
+        [options]="licenses"
+    ></app-form-radio>
+
+    <app-form-field
+            (change)="inputChange('custom-license', $event.target)"
+            [ngClass]="{'hidden': licenseType.value !== LicenseType.Custom}"
+            [placeholder]="'License...'"
+            [textarea]="true"
+    ></app-form-field>
 
 </div>
 <button (click)="generateMarkdown()"

@@ -7,7 +7,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {reducers} from "./store/reducers";
 import {MarkdownModule} from "ngx-markdown";
 import {BackgroundComponent} from './components/background/background.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastComponent} from './toast/toast.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MdPreviewComponent} from "./components/markdown/md-preview/md-preview.component";
@@ -15,6 +15,11 @@ import {MultiPickerComponent} from "./components/multi-picker/multi-picker.compo
 import {RawCodeSnippetComponent} from "./components/raw-code-snippet/raw-code-snippet.component";
 import {MdCodeSnippetComponent} from "./components/markdown/md-code-snippet/md-code-snippet.component";
 import {FormComponent} from './components/form/form.component';
+import {FormCheckboxComponent} from './components/form-checkbox/form-checkbox.component';
+import {FormFieldComponent} from './components/form-field/form-field.component';
+import {SectionTitleComponent} from './components/section-title/section-title.component';
+import {FormRadioComponent} from './components/form-radio/form-radio.component';
+import {MultiFieldComponent} from './components/multi-field/multi-field.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +30,12 @@ import {FormComponent} from './components/form/form.component';
         RawCodeSnippetComponent,
         MdCodeSnippetComponent,
         ToastComponent,
-        FormComponent
+        FormComponent,
+        FormCheckboxComponent,
+        FormFieldComponent,
+        SectionTitleComponent,
+        FormRadioComponent,
+        MultiFieldComponent
     ],
     imports: [
         BrowserModule,
@@ -37,7 +47,8 @@ import {FormComponent} from './components/form/form.component';
         }),
         MarkdownModule.forRoot(),
         ReactiveFormsModule,
-        BrowserAnimationsModule
+        BrowserAnimationsModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
