@@ -181,7 +181,8 @@ export class MarkdownService {
             this.generateAcknowledgementsSection(acknowledgements),
             this.generateContributionSection(contributionSection),
             this.generateAuthorSection('John Doe', 'john@example.com'),
-            this.generateLicenseSection(licenseSection)
+            this.generateLicenseSection(licenseSection),
+            this.generateWatermark()
         ];
 
         let result = '';
@@ -669,4 +670,7 @@ ${description}
         return this.LINKS_PLACEHOLDER;
     }
 
+    generateWatermark() {
+        return '---\n <div align="center">Built with ❤️ with <a href="https://github.com/luisvent/document_my_project">Document My Project</a></div>';
+    }
 }
