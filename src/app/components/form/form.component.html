@@ -41,7 +41,7 @@
 
     <app-section-title [title]="'Features'"></app-section-title>
     <app-multi-field
-            (change)="debounceInput$.next({type: 'features', value: $event})"
+            (valueChange)="debounceInput$.next({type: 'features', value: $event})"
             [fields]="['Name', 'Feature description']"
     ></app-multi-field>
 
@@ -128,7 +128,7 @@
 
     <app-section-title [title]="'Acknowledgements'"></app-section-title>
     <app-multi-field
-            (change)="debounceInput$.next({type: 'acknowledge', value: $event})"
+            (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
             [fields]="['Name', 'Description', 'Url']"
     ></app-multi-field>
 
@@ -161,7 +161,7 @@
     <div class="flex flex-col">
         <h6>Github</h6>
         <app-form-field
-                (change)="inputChange('author-name', $event.target)"
+                (change)="inputChange('author-github', $event.target)"
                 [placeholder]="'Author Username'"
         ></app-form-field>
     </div>
@@ -170,7 +170,7 @@
 
     <app-form-checkbox
         #licenseCheckbox
-        (change)=" inputChange('license', $event.target)"
+        (change)="inputChange('license', $event.target)"
         [title]="'Add License'"
     ></app-form-checkbox>
 

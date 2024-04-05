@@ -1,5 +1,4 @@
 export interface ContributionOptions {
-    title: string,
-    description: string,
+    add: boolean,
     contributionGuidelinesLink?: string | undefined
 }

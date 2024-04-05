@@ -16,8 +16,11 @@ export interface EditorState {
     shortDescription: string;
     description: string,
     github: GitHubOptions,
-    displayMarkdownResult: boolean,
     npm: NPMOptions,
+    logoUrl: string;
+    navigationLinks: boolean;
+    contentTable: boolean;
+    mainImageUrl: string;
     images: string[],
     features: FeatureOptions[],
     technologies: TechnologyOptions[],
@@ -26,20 +29,28 @@ export interface EditorState {
     contribution: ContributionOptions,
     author: AuthorData,
     license: LicenseOptions,
-    watermark: boolean
+    watermark: boolean,
+    displayMarkdownResult: boolean
 }
 
 const initialState: EditorState = {
     title: '',
     shortDescription: 'string',
     description: '',
+    navigationLinks: false,
+    contentTable: false,
     github: {
         username: '',
         repo: '',
+        badges: false
     },
+    logoUrl: '',
+    mainImageUrl: '',
     displayMarkdownResult: false,
     npm: {
-        package: ''
+        package: '',
+        url: '',
+        badges: false
     },
     images: [],
     features: [],
@@ -56,7 +67,7 @@ const initialState: EditorState = {
         usageSteps: [],
     },
     acknowledgments: [],
-    contribution: {title: '', description: '', contributionGuidelinesLink: undefined},
+    contribution: {add: false, contributionGuidelinesLink: undefined},
     author: {
         name: '',
         email: '',
@@ -71,12 +82,107 @@ const initialState: EditorState = {
 export const editorReducer = createReducer(
     initialState,
 
-    on(Actions.addDescription, (state, action): EditorState => {
+    on(Actions.modifyTitle, (state, action): EditorState => {
+        console.log(action)
+        return newState(state, {title: action.title})
+    }),
+
+    on(Actions.modifyDescription, (state, action): EditorState => {
         return newState(state, {description: action.description})
     }),
 
-    on(Actions.removeDescription, (state, action): EditorState => {
-        return newState(state, {description: ''})
+    on(Actions.modifyShortDescription, (state, action): EditorState => {
+        return newState(state, {shortDescription: action.shortDescription})
+    }),
+
+    on(Actions.modifyGithubUrl, (state, action): EditorState => {
+        const github = newState(state.github, {url: action.url})
+        return newState(state, {github: github})
+    }),
+
+    on(Actions.modifyNavigation, (state, action): EditorState => {
+        return newState(state, {navigationLinks: action.navigation})
+    }),
+
+    on(Actions.modifyContentTable, (state, action): EditorState => {
+        return newState(state, {contentTable: action.contentTable})
+    }),
+
+    on(Actions.modifyGithubBadge, (state, action): EditorState => {
+        const github = newState(state.github, {badges: action.badge})
+        return newState(state, {github: github})
+    }),
+
+    on(Actions.modifyNpmUrl, (state, action): EditorState => {
+        const npm = newState(state.npm, {url: action.url})
+        return newState(state, {npm: npm})
+    }),
+
+    on(Actions.modifyNpmBadge, (state, action): EditorState => {
+        const npm = newState(state.npm, {badges: action.badge})
+        return newState(state, {npm: npm})
+    }),
+
+    on(Actions.modifyLogoUrl, (state, action): EditorState => {
+        return newState(state, {logoUrl: action.logoUrl})
+    }),
+
+    on(Actions.modifyMainImageUrl, (state, action): EditorState => {
+        return newState(state, {mainImageUrl: action.mainImageUrl})
+    }),
+
+    on(Actions.modifyImages, (state, action): EditorState => {
+        return newState(state, {images: action.images})
+    }),
+
+    on(Actions.addTechnologies, (state, action): EditorState => {
+        return newState(state, {technologies: action.technologies})
+    }),
+
+    on(Actions.removeTechnology, (state, action): EditorState => {
+        return newState(state, {technologies: []})
+    }),
+
+    on(Actions.modifyAcknowledgement, (state, action): EditorState => {
+        return newState(state, {acknowledgments: action.acknowledgements || []})
+    }),
+
+    on(Actions.modifyContribution, (state, action): EditorState => {
+        const contribution = newState(state.contribution, {add: action.contribution})
+        return newState(state, {contribution: contribution})
+    }),
+
+    on(Actions.modifyContributionGuideline, (state, action): EditorState => {
+        const contribution = newState(state.contribution, {contributionGuidelinesLink: action.contributionGuidelinesLink})
+        return newState(state, {contribution: contribution})
+    }),
+
+    on(Actions.modifyAuthorName, (state, action): EditorState => {
+        const author = newState(state.author, {name: action.authorName})
+        return newState(state, {author: author})
+    }),
+
+    on(Actions.modifyAuthorGithub, (state, action): EditorState => {
+        const author = newState(state.author, {github: action.authorGithub})
+        return newState(state, {author: author})
+    }),
+
+    on(Actions.addLicense, (state, action): EditorState => {
+        return newState(state, {license: action.license})
+    }),
+
+    on(Actions.removeLicense, (state, action): EditorState => {
+        const license = {type: undefined, customText: undefined};
+        return newState(state, {license: license})
+    }),
+
+    on(Actions.modifyCustomLicense, (state, action): EditorState => {
+        const license = newState(state.license, {customText: action.customText})
+        return newState(state, {license: license})
+    }),
+
+    on(Actions.modifyFeatures, (state, action): EditorState => {
+        return newState(state, {features: action.features || []})
     }),
 
     on(Actions.displayMarkdownResult, (state, action): EditorState => {
@@ -88,8 +194,8 @@ export const editorReducer = createReducer(
     }),
 );
 
-const newState = (state: any, newData: any): EditorState => {
-    const newState = {...state, ...newData}
+const newState = (oldState: any, newData: any): EditorState => {
+    const newState = {...oldState, ...newData}
     console.log('calculating new state', newData, newState)
     return newState
 }

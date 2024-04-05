@@ -1,6 +1,6 @@
 import {LicenseType} from "../enums/license-type.enum";
 
 export interface LicenseOptions {
-    type: LicenseType,
+    type?: LicenseType,
     customText?: string | undefined
 }

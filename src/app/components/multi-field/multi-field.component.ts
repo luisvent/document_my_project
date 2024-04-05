@@ -12,7 +12,7 @@ export class MultiFieldComponent {
     fields: string[] = [];
 
     @Output()
-    change = new EventEmitter<string[][]>;
+    valueChange = new EventEmitter<string[][]>;
 
     entries: { id: string, name: string[] }[] = [];
 
@@ -38,7 +38,7 @@ export class MultiFieldComponent {
     }
 
     emitChange() {
-        this.change.emit(this.entries.map(e => e.name))
+        this.valueChange.emit(this.entries.map(e => e.name))
     }
 
     assignValue(value: string, key: number, index: number) {

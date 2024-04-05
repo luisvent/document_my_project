@@ -1,3 +1,5 @@
 export interface NPMOptions {
-    package: string
+    package?: string;
+    url: string;
+    badges: boolean
 }
