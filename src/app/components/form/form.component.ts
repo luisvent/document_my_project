@@ -10,7 +10,7 @@ import {LicenseType} from "../../enums/license-type.enum";
 
 interface InputInteraction {
     type: string;
-    value: string | boolean;
+    value: any;
 }
 
 @Component({
@@ -22,11 +22,24 @@ export class FormComponent implements OnInit {
 
     technologies = technologies;
     licenses: { name: string; value: string }[] = [];
+    public debounceInput$ = new Subject<InputInteraction>();
     protected readonly LicenseType = LicenseType;
-    private debounceInput$ = new Subject<InputInteraction>();
 
     constructor(private store: Store<AppState>, private mdService: MarkdownService) {
         this.getLicenses();
+    }
+
+    ngOnInit(): void {
+        this.debounceInput$.pipe(
+            debounceTime(500),
+            distinctUntilChanged()).subscribe(input => {
+            console.log(input)
+            this.processInput(input);
+        })
+    }
+
+    selectedTechnologies(technologies: PickerItem[]) {
+        console.log(technologies)
     }
 
     getLicenses() {
@@ -35,18 +48,6 @@ export class FormComponent implements OnInit {
                 name: LicenseType[key as keyof typeof LicenseType], value: key
             }
         })
-    }
-
-    ngOnInit(): void {
-        this.debounceInput$.pipe(
-            debounceTime(500),
-            distinctUntilChanged()).subscribe(input => {
-            this.processInput(input);
-        })
-    }
-
-    selectedTechnologies(technologies: PickerItem[]) {
-        console.log(technologies)
     }
 
     generateMarkdown() {
@@ -62,7 +63,6 @@ export class FormComponent implements OnInit {
     }
 
     processInput(input: InputInteraction) {
-        console.log(input)
         switch (input.type) {
 
             case 'title':

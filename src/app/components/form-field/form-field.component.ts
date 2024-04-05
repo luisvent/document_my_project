@@ -18,12 +18,14 @@ export class FormFieldComponent {
     @Output()
     change = new EventEmitter<Event>();
 
-    value = '';
+    @Input() value = '';
+    @Output() valueChange = new EventEmitter<string>();
 
     constructor() {
     }
 
     inputChange(e: Event) {
         this.change.emit(e);
+        this.valueChange.emit((e.target as HTMLInputElement).value);
     }
 }

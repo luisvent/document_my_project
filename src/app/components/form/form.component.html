@@ -39,6 +39,12 @@
             [title]="'Add Navigation Links'"
     ></app-form-checkbox>
 
+    <app-section-title [title]="'Features'"></app-section-title>
+    <app-multi-field
+            (change)="debounceInput$.next({type: 'features', value: $event})"
+            [fields]="['Name', 'Feature description']"
+    ></app-multi-field>
+
     <app-section-title [title]="'Repositories'"></app-section-title>
 
     <div class="flex flex-col">
