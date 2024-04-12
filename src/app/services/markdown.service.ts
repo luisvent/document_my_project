@@ -22,7 +22,7 @@ export class MarkdownService {
     }
 
     Build(state: EditorState) {
-
+ 
         const sections = [
             state.github.badges && this.generateGitHubBadges({
                 username: state.github.username,

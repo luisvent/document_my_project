@@ -88,6 +88,14 @@ export const testData: EditorState = {
         includeUsage: false,
         usageSteps: [],
     },
+    configuration: {
+        description: 'Default values to configure',
+        parameters: [{
+            field: 'name',
+            description: 'Project name',
+            default: 'project'
+        }]
+    },
     acknowledgments: [
         {
             title: 'ngx-markdown',
