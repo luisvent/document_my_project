@@ -147,6 +147,14 @@
         ></app-form-field>
     </div>
 
+    <div class="flex flex-col">
+        <h6>Add Contributors</h6>
+        <app-multi-field
+                (valueChange)="debounceInput$.next({type: 'contributors', value: $event})"
+                [fields]="['Name', 'Username']"
+        ></app-multi-field>
+    </div>
+
     <app-section-title [title]="'Author'"></app-section-title>
 
     <div class="flex flex-col">

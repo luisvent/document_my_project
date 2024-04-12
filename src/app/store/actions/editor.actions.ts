@@ -3,6 +3,7 @@ import {FeatureOptions} from "../../interfaces/feature-options.interface";
 import {TechnologyOptions} from "../../interfaces/technology-options.interface";
 import {AcknowledgeOptions} from "../../interfaces/acknowledge-options.interface";
 import {LicenseOptions} from "../../interfaces/license-options.interface";
+import {ContributorOptions} from "../../interfaces/contributor-options.interface";
 
 export const modifyTitle = createAction(
     '[Form] Modify Title',
@@ -73,6 +74,11 @@ export const removeTechnology = createAction(
 export const modifyAcknowledgement = createAction(
     '[Form] Modify Acknowledgement',
     props<{ acknowledgements: AcknowledgeOptions[] }>()
+);
+
+export const modifyContributors = createAction(
+    '[Form] Modify Contributors',
+    props<{ contributors: ContributorOptions[] }>()
 );
 
 

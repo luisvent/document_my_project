@@ -10,6 +10,7 @@ import {AcknowledgeOptions} from "../../interfaces/acknowledge-options.interface
 import {ContributionOptions} from "../../interfaces/contribution-options.interface";
 import {AuthorData} from "../../interfaces/author-data.interface";
 import {LicenseOptions} from "../../interfaces/license-options.interface";
+import {ContributorOptions} from "../../interfaces/contributor-options.interface";
 
 export interface EditorState {
     title: string,
@@ -27,6 +28,7 @@ export interface EditorState {
     installation: InstallationOptions,
     acknowledgments: AcknowledgeOptions[],
     contribution: ContributionOptions,
+    contributors: ContributorOptions[],
     author: AuthorData,
     license: LicenseOptions,
     watermark: boolean,
@@ -68,6 +70,7 @@ const initialState: EditorState = {
     },
     acknowledgments: [],
     contribution: {add: false, contributionGuidelinesLink: undefined},
+    contributors: [],
     author: {
         name: '',
         email: '',
@@ -145,6 +148,10 @@ export const editorReducer = createReducer(
 
     on(Actions.modifyAcknowledgement, (state, action): EditorState => {
         return newState(state, {acknowledgments: action.acknowledgements || []})
+    }),
+
+    on(Actions.modifyContributors, (state, action): EditorState => {
+        return newState(state, {contributors: action.contributors || []})
     }),
 
     on(Actions.modifyContribution, (state, action): EditorState => {
