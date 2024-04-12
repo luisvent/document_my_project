@@ -9,6 +9,7 @@ import {debounceTime, distinctUntilChanged, Subject} from "rxjs";
 import {LicenseType} from "../../enums/license-type.enum";
 import {editorSelector, selectGeneratingMarkdown} from "../../store/selectors/editor.selectors";
 import {EditorState} from "../../store/reducers/editor.reducer";
+import {testData} from "../../../data/test";
 
 interface InputInteraction {
     type: string;
@@ -46,6 +47,9 @@ export class FormComponent implements OnInit {
                 this.BuildMarkdown(state);
             }
         })
+
+        this.store.dispatch(Actions.setData({data: testData}));
+
     }
 
     BuildMarkdown(state: EditorState) {

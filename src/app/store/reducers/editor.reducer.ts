@@ -215,6 +215,10 @@ export const editorReducer = createReducer(
             displayMarkdownResult: true
         })
     }),
+
+    on(Actions.setData, (state, action): EditorState => {
+        return newState(state, action.data)
+    }),
 );
 
 const newState = (oldState: any, newData: any): EditorState => {
