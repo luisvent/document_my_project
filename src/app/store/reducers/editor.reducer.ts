@@ -11,6 +11,7 @@ import {ContributionOptions} from "../../interfaces/contribution-options.interfa
 import {AuthorData} from "../../interfaces/author-data.interface";
 import {LicenseOptions} from "../../interfaces/license-options.interface";
 import {ContributorOptions} from "../../interfaces/contributor-options.interface";
+import {ConfigurationOptions} from "../../interfaces/configuration-options.interface";
 
 export interface EditorState {
     title: string,
@@ -26,6 +27,7 @@ export interface EditorState {
     features: FeatureOptions[],
     technologies: TechnologyOptions[],
     installation: InstallationOptions,
+    configuration: ConfigurationOptions,
     acknowledgments: AcknowledgeOptions[],
     contribution: ContributionOptions,
     contributors: ContributorOptions[],
@@ -73,6 +75,10 @@ const initialState: EditorState = {
     acknowledgments: [],
     contribution: {add: false, contributionGuidelinesLink: undefined},
     contributors: [],
+    configuration: {
+        description: '',
+        parameters: []
+    },
     author: {
         name: '',
         email: '',

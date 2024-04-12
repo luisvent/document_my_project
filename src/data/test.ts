@@ -4,7 +4,7 @@ import {LicenseType} from "../app/enums/license-type.enum";
 export const testData: EditorState = {
     title: 'Document My Project',
     shortDescription: 'Easily create markdown documentation for your project',
-    description: '',
+    description: 'Tired of manually writing README files? Introducing an web app that streamlines your documentation process for Github projects. Our intuitive platform lets you generate beautiful and informative Markdown documentation in seconds.',
     navigationLinks: true,
     contentTable: true,
     github: {
