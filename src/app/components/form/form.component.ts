@@ -7,6 +7,8 @@ import {AppState} from "../../store/state.interface";
 import {MarkdownService} from "../../services/markdown.service";
 import {debounceTime, distinctUntilChanged, Subject} from "rxjs";
 import {LicenseType} from "../../enums/license-type.enum";
+import {editorSelector, selectGeneratingMarkdown} from "../../store/selectors/editor.selectors";
+import {EditorState} from "../../store/reducers/editor.reducer";
 
 interface InputInteraction {
     type: string;
@@ -23,6 +25,8 @@ export class FormComponent implements OnInit {
     technologies = technologies;
     licenses: { name: string; value: string }[] = [];
     public debounceInput$ = new Subject<InputInteraction>();
+    public generating$ = this.store.select(selectGeneratingMarkdown);
+    public state$ = this.store.select(editorSelector);
     protected readonly LicenseType = LicenseType;
 
     constructor(private store: Store<AppState>, private mdService: MarkdownService) {
@@ -35,6 +39,18 @@ export class FormComponent implements OnInit {
             distinctUntilChanged()).subscribe(input => {
             this.processInput(input);
         })
+
+        this.state$.subscribe(state => {
+            console.log(state)
+            if (state.generateMarkdown) {
+                this.BuildMarkdown(state);
+            }
+        })
+    }
+
+    BuildMarkdown(state: EditorState) {
+        const markdown = this.mdService.Build(state);
+        this.store.dispatch(Actions.markdownGenerated({markdown}));
     }
 
     selectedTechnologies(technologies: PickerItem[]) {
@@ -50,7 +66,7 @@ export class FormComponent implements OnInit {
     }
 
     generateMarkdown() {
-        this.store.dispatch(Actions.displayMarkdownResult());
+        this.store.dispatch(Actions.generateMarkdown({generate: true}));
         window.scroll(0, 0);
     }
 

@@ -1,12 +1,12 @@
 <app-background></app-background>
 
 <div class="absolute w-full flex gap-12 justify-center flex-col lg:flex-row items-center lg:items-start">
-    <main [ngClass]="{'max-w-96': displayMarkdown$ | async}" class="block w-full max-w-[700px]">
+    <main [ngClass]="{'max-w-96': generatedMarkdown$ | async}" class="block w-full max-w-[700px]">
         <app-form></app-form>
     </main>
-    <aside *ngIf="displayMarkdown$ | async"
+    <aside *ngIf="(generatedMarkdown$ | async) as markdown"
            class="max-h-full w-full max-w-[800px] top-9 block lg:sticky  overflow-hidden">
-        <app-md-code-snippet [text]="markdownData"></app-md-code-snippet>
+        <app-md-code-snippet [text]="markdown"></app-md-code-snippet>
     </aside>
 </div>
 

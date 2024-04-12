@@ -32,7 +32,9 @@ export interface EditorState {
     author: AuthorData,
     license: LicenseOptions,
     watermark: boolean,
-    displayMarkdownResult: boolean
+    displayMarkdownResult: boolean,
+    generateMarkdown: boolean,
+    generatedMarkdown: string
 }
 
 const initialState: EditorState = {
@@ -79,7 +81,9 @@ const initialState: EditorState = {
         likedIn: '',
     },
     license: {type: LicenseType.MIT, customText: undefined},
-    watermark: true
+    watermark: true,
+    generateMarkdown: false,
+    generatedMarkdown: ''
 };
 
 export const editorReducer = createReducer(
@@ -198,6 +202,18 @@ export const editorReducer = createReducer(
 
     on(Actions.hideMarkdownResult, (state, action): EditorState => {
         return newState(state, {displayMarkdownResult: false})
+    }),
+
+    on(Actions.generateMarkdown, (state, action): EditorState => {
+        return newState(state, {generateMarkdown: action.generate})
+    }),
+
+    on(Actions.markdownGenerated, (state, action): EditorState => {
+        return newState(state, {
+            generateMarkdown: false,
+            generatedMarkdown: action.markdown,
+            displayMarkdownResult: true
+        })
     }),
 );
 

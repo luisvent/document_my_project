@@ -8,6 +8,7 @@ import {FeatureOptions} from "../interfaces/feature-options.interface";
 import {LicenseOptions} from "../interfaces/license-options.interface";
 import {AcknowledgeOptions} from "../interfaces/acknowledge-options.interface";
 import {ContributionOptions} from "../interfaces/contribution-options.interface";
+import {EditorState} from "../store/reducers/editor.reducer";
 
 @Injectable({
     providedIn: 'root'
@@ -18,6 +19,70 @@ export class MarkdownService {
     LINKS_PLACEHOLDER = '<!-- LINKS_PLACEHOLDER -->';
 
     constructor() {
+    }
+
+    Build(state: EditorState) {
+
+        const sections = [
+            state.github.badges && this.generateGitHubBadges({
+                username: state.github.username,
+                repo: state.github.repo,
+                badges: true
+            }),
+            this.generateIntroductionSection(state.title, state.shortDescription,
+                'https//:url.com', state.logoUrl),
+            state.npm.badges && this.generateNpmBadges(state.npm.package!, {
+                npmVersion: {
+                    color: '0470FF',
+                    logoColor: 'white'
+                },
+                npmDownloads: {
+                    color: '67ACF3'
+                },
+                bundleSize: {
+                    color: 'F9DBBC'
+                }
+            }),
+            this.generateLinksPlaceholder(),
+            state.mainImageUrl && this.generateCenteredImages([{url: state.mainImageUrl, alt: 'Main Image'}]),
+            this.generateTableContentPlaceholder(),
+            state.description && this.generateDescription([state.description]),
+            state.images.length > 0 && this.generateShowcaseSection(state.images),
+            state.features.length > 0 && this.generateFeaturesSection(state.features),
+            state.technologies.length > 0 && this.generateTechStackSection(state.technologies),
+            this.generateInstallSection({
+                projectName: 'My Awesome Project',
+                packageManager: 'npm',
+                dependencies: ['react', 'react-dom', 'axios'],
+                devDependencies: ['eslint', 'prettier'],
+                installationSteps: ['Run the development server with `npm run dev`'],
+                includeSetup: true,
+                setupSteps: ['Install Node.js v12 or later', 'Install a code editor (e.g., Visual Studio Code)'],
+                includeUsage: true,
+                usageSteps: ['Open the project directory in your code editor', 'Run `npm start` to start the development server'],
+            }),
+            this.generateParametersTable([
+                {fieldName: 'name', description: 'Name of the user', defaultValue: 'John Doe'},
+                {fieldName: 'age', description: 'Age of the user'},
+                {fieldName: 'isAdmin', description: 'Whether the user is an admin or not', defaultValue: 'false'}
+            ]),
+            state.acknowledgments.length > 0 && this.generateAcknowledgementsSection(state.acknowledgments),
+            state.contribution.add && this.generateContributionSection(state.contribution),
+            this.generateAuthorSection(state.author),
+            this.generateLicenseSection(state.license),
+            this.generateWatermark()
+        ];
+
+        let result = '';
+
+        for (const section of sections) {
+            result += `${section}\n\n`;
+        }
+
+        result = this.generateTableOfContentsFromMarkdown(result);
+        result = this.generateLinksSection(result);
+
+        return result;
     }
 
     test() {
