@@ -115,8 +115,28 @@
         [title]="'Add Tech Stack'"
     ></app-form-checkbox>
 
-    <!--    <app-section-title [title]="'Setup'"></app-section-title>-->
-    <!--    <h5>Installation</h5>-->
+    <app-section-title [title]="'Setup'"></app-section-title>
+    <small>Add instructions to run the project...</small>
+
+    <h6>Installation</h6>
+    <app-multi-field
+            (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
+            [fields]="['Description']"
+            [textarea]="true"
+    ></app-multi-field>
+
+    <h6>Usage</h6>
+    <app-multi-field
+            (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
+            [fields]="['Description']"
+            [textarea]="true"
+    ></app-multi-field>
+
+    <h6>Parameters</h6>
+    <app-multi-field
+            (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
+            [fields]="['Name', 'Description', 'Default']"
+    ></app-multi-field>
 
 
     <div [ngClass]="techStack.value? '' : 'hidden'"

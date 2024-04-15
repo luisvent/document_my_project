@@ -34,3 +34,7 @@ h5 {
 h6 {
     @apply text-sm font-bold dark:text-white mb-2 mt-3 text-slate-600
 }
+
+small {
+    @apply text-[12px] text-slate-500
+}
