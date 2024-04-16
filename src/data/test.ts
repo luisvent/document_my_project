@@ -6,6 +6,18 @@ export const testData: EditorState = {
     shortDescription: 'Easily create markdown documentation for your project',
     description: 'Tired of manually writing README files? Introducing an web app that streamlines your documentation process for Github projects. Our intuitive platform lets you generate beautiful and informative Markdown documentation in seconds.',
     navigationLinks: true,
+    installSteps: [
+        'Install Node.js v12 or later',
+        'Install a code editor (e.g., Visual Studio Code)',
+        'Install the required dependencies:',
+        '`npm install react react-dom axios`',
+        'Install the development dependencies (if needed):',
+        '`npm install --dev eslint prettier`'
+    ],
+    usageSteps: [
+        'Open the project directory in your code editor',
+        'Run `npm start` to start the development server',
+    ],
     contentTable: true,
     github: {
         username: 'luisvent',

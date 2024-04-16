@@ -27,6 +27,8 @@ export interface EditorState {
     features: FeatureOptions[],
     technologies: TechnologyOptions[],
     installation: InstallationOptions,
+    installSteps: string[];
+    usageSteps: string[];
     configuration: ConfigurationOptions,
     acknowledgments: AcknowledgeOptions[],
     contribution: ContributionOptions,
@@ -72,12 +74,16 @@ const initialState: EditorState = {
         includeUsage: false,
         usageSteps: [],
     },
+    installSteps: [],
+    usageSteps: [],
     acknowledgments: [],
     contribution: {add: false, contributionGuidelinesLink: undefined},
     contributors: [],
     configuration: {
         description: '',
-        parameters: []
+        parameters: [
+            {field: 'url', description: 'database url connection string', default: 'localhost:56900'}
+        ]
     },
     author: {
         name: '',
