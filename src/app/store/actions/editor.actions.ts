@@ -105,6 +105,17 @@ export const modifyAuthorGithub = createAction(
     props<{ authorGithub: string }>()
 );
 
+
+export const modifyInstallation = createAction(
+    '[Form] Modify Installation Steps',
+    props<{ steps: string[] }>()
+);
+
+export const modifyUsage = createAction(
+    '[Form] Modify Usage Steps',
+    props<{ steps: string[] }>()
+);
+
 export const addLicense = createAction(
     '[Form] Add License',
     props<{ license: LicenseOptions }>()

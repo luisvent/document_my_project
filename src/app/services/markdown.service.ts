@@ -81,7 +81,7 @@ export class MarkdownService {
         let result = '';
 
         for (const section of sections) {
-            result += `${section}\n\n`;
+            result += section ? `${section}\n\n` : '';
         }
 
         result = this.generateTableOfContentsFromMarkdown(result);

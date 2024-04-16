@@ -9,7 +9,6 @@ import {debounceTime, distinctUntilChanged, Subject} from "rxjs";
 import {LicenseType} from "../../enums/license-type.enum";
 import {editorSelector, selectGeneratingMarkdown} from "../../store/selectors/editor.selectors";
 import {EditorState} from "../../store/reducers/editor.reducer";
-import {testData} from "../../../data/test";
 
 interface InputInteraction {
     type: string;
@@ -48,7 +47,7 @@ export class FormComponent implements OnInit {
             }
         })
 
-        this.store.dispatch(Actions.setData({data: testData}));
+        // this.store.dispatch(Actions.setData({data: testData}));
 
     }
 
@@ -112,6 +111,14 @@ export class FormComponent implements OnInit {
                 })
 
                 this.store.dispatch(Actions.modifyFeatures({features: features}));
+                break;
+
+            case 'installation':
+                this.store.dispatch(Actions.modifyInstallation({steps: input.value}));
+                break;
+
+            case 'usage':
+                this.store.dispatch(Actions.modifyUsage({steps: input.value}));
                 break;
 
             case 'repository-url':

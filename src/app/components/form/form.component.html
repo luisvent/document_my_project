@@ -120,21 +120,21 @@
 
     <h6>Installation</h6>
     <app-multi-field
-            (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
+            (valueChange)="debounceInput$.next({type: 'installation', value: $event})"
             [fields]="['Description']"
             [textarea]="true"
     ></app-multi-field>
 
     <h6>Usage</h6>
     <app-multi-field
-            (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
+            (valueChange)="debounceInput$.next({type: 'usage', value: $event})"
             [fields]="['Description']"
             [textarea]="true"
     ></app-multi-field>
 
     <h6>Parameters</h6>
     <app-multi-field
-            (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
+            (valueChange)="debounceInput$.next({type: 'parameters', value: $event})"
             [fields]="['Name', 'Description', 'Default']"
     ></app-multi-field>
 

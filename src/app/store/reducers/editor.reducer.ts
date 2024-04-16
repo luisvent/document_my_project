@@ -208,6 +208,14 @@ export const editorReducer = createReducer(
         return newState(state, {features: action.features || []})
     }),
 
+    on(Actions.modifyInstallation, (state, action): EditorState => {
+        return newState(state, {installSteps: action.steps || []})
+    }),
+
+    on(Actions.modifyUsage, (state, action): EditorState => {
+        return newState(state, {installUsage: action.steps || []})
+    }),
+
     on(Actions.displayMarkdownResult, (state, action): EditorState => {
         return newState(state, {displayMarkdownResult: true})
     }),
