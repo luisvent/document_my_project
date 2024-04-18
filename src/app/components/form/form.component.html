@@ -1,5 +1,6 @@
 <div class="overflow-auto p-4">
     <app-section-title [title]="'About'"></app-section-title>
+    <small>Information about your project</small>
 
     <div class="flex flex-col">
         <h6>Title</h6>
@@ -28,6 +29,7 @@
     </div>
 
     <app-section-title [title]="'Navigation'"></app-section-title>
+    <small>Documentation navigation</small>
 
     <app-form-checkbox
             (change)=" inputChange('content-table', $event.target)"
@@ -46,6 +48,7 @@
     ></app-multi-field>
 
     <app-section-title [title]="'Repositories'"></app-section-title>
+    <small>Source code information</small>
 
     <div class="flex flex-col">
         <h6>Repository</h6>
@@ -80,6 +83,7 @@
     ></app-form-checkbox>
 
     <app-section-title [title]="'Images'"></app-section-title>
+    <small>Project showcase</small>
 
     <div class="flex flex-col">
         <h6>Logo Url</h6>
@@ -115,6 +119,16 @@
         [title]="'Add Tech Stack'"
     ></app-form-checkbox>
 
+    <div [ngClass]="techStack.value? '' : 'hidden'"
+         class="flex flex-col">
+
+        <app-multi-picker
+                (selectedItemsChange)="selectedTechnologies($event)"
+                [items]="technologies"
+                title="technologies"
+        ></app-multi-picker>
+    </div>
+
     <app-section-title [title]="'Setup'"></app-section-title>
     <small>Add instructions to run the project...</small>
 
@@ -138,18 +152,6 @@
             [fields]="['Name', 'Description', 'Default']"
     ></app-multi-field>
 
-
-    <div [ngClass]="techStack.value? '' : 'hidden'"
-         class="flex flex-col">
-
-        <app-multi-picker
-                (selectedItemsChange)="selectedTechnologies($event)"
-                [items]="technologies"
-                title="technologies"
-        ></app-multi-picker>
-    </div>
-
-
     <app-section-title [title]="'Acknowledgements'"></app-section-title>
     <app-multi-field
             (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
@@ -157,6 +159,7 @@
     ></app-multi-field>
 
     <app-section-title [title]="'Contributions'"></app-section-title>
+    <small>Who helped build the project</small>
 
     <div class="flex flex-col">
         <app-form-checkbox
@@ -180,6 +183,7 @@
     </div>
 
     <app-section-title [title]="'Author'"></app-section-title>
+    <small>Who is the author</small>
 
     <div class="flex flex-col">
         <h6>Name</h6>
@@ -199,6 +203,7 @@
     </div>
 
     <app-section-title [title]="'License'"></app-section-title>
+    <small>Add your project license</small>
 
     <app-form-checkbox
         #licenseCheckbox
