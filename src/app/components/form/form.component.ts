@@ -5,10 +5,11 @@ import {Actions} from "../../store/actions/action-types";
 import {Store} from "@ngrx/store";
 import {AppState} from "../../store/state.interface";
 import {MarkdownService} from "../../services/markdown.service";
-import {debounceTime, distinctUntilChanged, Subject} from "rxjs";
+import {debounceTime, distinctUntilChanged, Observable, Subject} from "rxjs";
 import {LicenseType} from "../../enums/license-type.enum";
-import {editorSelector, selectGeneratingMarkdown} from "../../store/selectors/editor.selectors";
+import {editorSelector, selectDescription, selectGeneratingMarkdown} from "../../store/selectors/editor.selectors";
 import {EditorState} from "../../store/reducers/editor.reducer";
+import {testData} from "../../../data/test";
 
 interface InputInteraction {
     type: string;
@@ -27,6 +28,7 @@ export class FormComponent implements OnInit {
     public debounceInput$ = new Subject<InputInteraction>();
     public generating$ = this.store.select(selectGeneratingMarkdown);
     public state$ = this.store.select(editorSelector);
+    public description$: Observable<string> = this.store.select(selectDescription);
     protected readonly LicenseType = LicenseType;
 
     constructor(private store: Store<AppState>, private mdService: MarkdownService) {
@@ -47,8 +49,7 @@ export class FormComponent implements OnInit {
             }
         })
 
-        // this.store.dispatch(Actions.setData({data: testData}));
-
+        this.store.dispatch(Actions.setData({data: testData}));
     }
 
     BuildMarkdown(state: EditorState) {

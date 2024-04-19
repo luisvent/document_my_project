@@ -25,6 +25,7 @@
                 (change)="inputChange('description', $event.target)"
                 [placeholder]="'Project Description...'"
                 [textarea]="true"
+                [value]="description$ | async"
         ></app-form-field>
     </div>
 
