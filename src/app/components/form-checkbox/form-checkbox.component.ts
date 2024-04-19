@@ -20,7 +20,8 @@ export class FormCheckboxComponent {
     @Output()
     change = new EventEmitter<Event>();
 
-    value = false;
+    @Input()
+    value: boolean | null = false;
 
     id = '';
 

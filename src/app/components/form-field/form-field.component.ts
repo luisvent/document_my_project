@@ -18,7 +18,7 @@ export class FormFieldComponent {
     @Output()
     change = new EventEmitter<Event>();
 
-    @Input() value: string | null = null;
+    @Input() value: string | null | undefined = '';
     @Output() valueChange = new EventEmitter<string>();
 
     constructor() {

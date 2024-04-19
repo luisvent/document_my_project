@@ -7,9 +7,41 @@ import {AppState} from "../../store/state.interface";
 import {MarkdownService} from "../../services/markdown.service";
 import {debounceTime, distinctUntilChanged, Observable, Subject} from "rxjs";
 import {LicenseType} from "../../enums/license-type.enum";
-import {editorSelector, selectDescription, selectGeneratingMarkdown} from "../../store/selectors/editor.selectors";
+import {
+    editorSelector,
+    selectAcknowledgment,
+    selectAuthorGithubUsername,
+    selectAuthorName,
+    selectContentTable,
+    selectContribution,
+    selectContributors,
+    selectDescription,
+    selectFeatures,
+    selectGeneratingMarkdown,
+    selectInstallSteps,
+    selectLicense,
+    selectLogo,
+    selectMainImage,
+    selectNavigationLinks,
+    selectNpmBadges,
+    selectNpmPackage,
+    selectParameters,
+    selectRepository,
+    selectRepositoryBadges,
+    selectScreenshots,
+    selectShortDescription,
+    selectStackTech,
+    selectTitle,
+    selectUsageSteps
+} from "../../store/selectors/editor.selectors";
 import {EditorState} from "../../store/reducers/editor.reducer";
 import {testData} from "../../../data/test";
+import {LicenseOptions} from "../../interfaces/license-options.interface";
+import {ContributorOptions} from "../../interfaces/contributor-options.interface";
+import {ContributionOptions} from "../../interfaces/contribution-options.interface";
+import {AcknowledgeOptions} from "../../interfaces/acknowledge-options.interface";
+import {TechnologyOptions} from "../../interfaces/technology-options.interface";
+import {FeatureOptions} from "../../interfaces/feature-options.interface";
 
 interface InputInteraction {
     type: string;
@@ -28,7 +60,34 @@ export class FormComponent implements OnInit {
     public debounceInput$ = new Subject<InputInteraction>();
     public generating$ = this.store.select(selectGeneratingMarkdown);
     public state$ = this.store.select(editorSelector);
+
+    public title$: Observable<string> = this.store.select(selectTitle);
     public description$: Observable<string> = this.store.select(selectDescription);
+    public shortDescription$: Observable<string> = this.store.select(selectShortDescription);
+    public contentTable$: Observable<boolean> = this.store.select(selectContentTable);
+    public navigationLinks$: Observable<boolean> = this.store.select(selectNavigationLinks);
+    public features$: Observable<FeatureOptions[]> = this.store.select(selectFeatures);
+    public repository$: Observable<string> = this.store.select(selectRepository);
+    public repositoryBadges$: Observable<boolean> = this.store.select(selectRepositoryBadges);
+    public npmUrl$: Observable<string> = this.store.select(selectNpmPackage);
+    public npmBadges$: Observable<boolean> = this.store.select(selectNpmBadges);
+    public logo$: Observable<string> = this.store.select(selectLogo);
+    public mainImage$: Observable<string> = this.store.select(selectMainImage);
+    public screenshots$: Observable<string[]> = this.store.select(selectScreenshots);
+    public stack$: Observable<TechnologyOptions[]> = this.store.select(selectStackTech);
+    public installSteps$: Observable<string[]> = this.store.select(selectInstallSteps);
+    public usageSteps$: Observable<string[]> = this.store.select(selectUsageSteps);
+    public parameters$: Observable<{
+        field: string,
+        description: string,
+        default?: string | undefined
+    }[]> = this.store.select(selectParameters);
+    public acknowledgements$: Observable<AcknowledgeOptions[]> = this.store.select(selectAcknowledgment);
+    public contribution$: Observable<ContributionOptions> = this.store.select(selectContribution);
+    public contributors$: Observable<ContributorOptions[]> = this.store.select(selectContributors);
+    public authorName$: Observable<string> = this.store.select(selectAuthorName);
+    public githubUsername$: Observable<string> = this.store.select(selectAuthorGithubUsername);
+    public license$: Observable<LicenseOptions> = this.store.select(selectLicense);
     protected readonly LicenseType = LicenseType;
 
     constructor(private store: Store<AppState>, private mdService: MarkdownService) {

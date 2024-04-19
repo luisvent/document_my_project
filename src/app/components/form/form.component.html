@@ -7,6 +7,7 @@
         <app-form-field
                 (change)="inputChange('title', $event.target)"
                 [placeholder]="'Project Title'"
+                [value]="title$ | async"
         ></app-form-field>
     </div>
 
@@ -16,6 +17,7 @@
                 (change)="inputChange('short-description', $event.target)"
                 [placeholder]="'Project headline...'"
                 [textarea]="true"
+                [value]="shortDescription$ | async"
         ></app-form-field>
     </div>
 
@@ -35,11 +37,13 @@
     <app-form-checkbox
             (change)=" inputChange('content-table', $event.target)"
             [title]="'Add Table of Contents'"
+            [value]="contentTable$ | async"
     ></app-form-checkbox>
 
     <app-form-checkbox
             (change)=" inputChange('navigation-links', $event.target)"
             [title]="'Add Navigation Links'"
+            [value]="navigationLinks$ | async"
     ></app-form-checkbox>
 
     <app-section-title [title]="'Features'"></app-section-title>
@@ -57,6 +61,7 @@
             #inputRepository
             (change)="inputChange('repository-url', $event.target)"
             [placeholder]="'Repository url'"
+            [value]="repository$ | async"
         ></app-form-field>
     </div>
 
@@ -65,6 +70,7 @@
             [disabled]="inputRepository.value === ''"
             [ngClass]="{'hidden': inputRepository.value === ''}"
             [title]="'Add GitHub Repository Badges'"
+            [value]="repositoryBadges$ | async"
     ></app-form-checkbox>
 
     <div class="flex flex-col">
@@ -73,6 +79,7 @@
             #inputNpm
             (change)="inputChange('npm-url', $event.target)"
             [placeholder]="'NPM Package url'"
+            [value]="npmUrl$ | async"
         ></app-form-field>
     </div>
 
@@ -81,6 +88,7 @@
             [disabled]="inputNpm.value === ''"
             [ngClass]="{'hidden': inputNpm.value === ''}"
             [title]="'Add NPM Badges'"
+            [value]="npmBadges$ | async"
     ></app-form-checkbox>
 
     <app-section-title [title]="'Images'"></app-section-title>
@@ -91,6 +99,7 @@
         <app-form-field
                 (change)="inputChange('logo-url', $event.target)"
                 [placeholder]="'Logo image url'"
+                [value]="logo$ | async"
         ></app-form-field>
     </div>
 
@@ -99,6 +108,7 @@
         <app-form-field
                 (change)="inputChange('main-img-url', $event.target)"
                 [placeholder]="'Main image url'"
+                [value]="mainImage$ | async"
         ></app-form-field>
     </div>
 
@@ -108,6 +118,7 @@
                 (change)="inputChange('screenshots-url', $event.target)"
                 [placeholder]="'Screenshots url'"
                 [textarea]="true"
+                [value]="(screenshots$ | async)?.join('\n')"
         ></app-form-field>
 
     </div>
@@ -191,6 +202,7 @@
         <app-form-field
                 (change)="inputChange('author-name', $event.target)"
                 [placeholder]="'Author Name'"
+                [value]="authorName$ | async"
         ></app-form-field>
 
     </div>
@@ -200,6 +212,7 @@
         <app-form-field
                 (change)="inputChange('author-github', $event.target)"
                 [placeholder]="'Author Username'"
+                [value]="githubUsername$ | async"
         ></app-form-field>
     </div>
 
