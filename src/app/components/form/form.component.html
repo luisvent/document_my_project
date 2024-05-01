@@ -158,18 +158,21 @@
             (valueChange)="debounceInput$.next({type: 'usage', value: $event})"
             [fields]="['Description']"
             [textarea]="true"
+            [value]="usageSteps$ | async"
     ></app-multi-field>
 
     <h6>Parameters</h6>
     <app-multi-field
             (valueChange)="debounceInput$.next({type: 'parameters', value: $event})"
             [fields]="['Name', 'Description', 'Default']"
+            [value]="parameters$ | async"
     ></app-multi-field>
 
     <app-section-title [title]="'Acknowledgements'"></app-section-title>
     <app-multi-field
             (valueChange)="debounceInput$.next({type: 'acknowledge', value: $event})"
             [fields]="['Name', 'Description', 'Url']"
+            [value]="acknowledgements$ | async"
     ></app-multi-field>
 
     <app-section-title [title]="'Contributions'"></app-section-title>
@@ -193,6 +196,7 @@
         <app-multi-field
                 (valueChange)="debounceInput$.next({type: 'contributors', value: $event})"
                 [fields]="['Name', 'Username']"
+                [value]="contributors$ | async"
         ></app-multi-field>
     </div>
 
