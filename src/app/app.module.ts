@@ -20,6 +20,7 @@ import {FormFieldComponent} from './components/form-field/form-field.component';
 import {SectionTitleComponent} from './components/section-title/section-title.component';
 import {FormRadioComponent} from './components/form-radio/form-radio.component';
 import {MultiFieldComponent} from './components/multi-field/multi-field.component';
+import {LogPipe} from "./pipes/log.pipe";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {MultiFieldComponent} from './components/multi-field/multi-field.componen
         FormFieldComponent,
         SectionTitleComponent,
         FormRadioComponent,
-        MultiFieldComponent
+        MultiFieldComponent,
+        LogPipe
     ],
     imports: [
         BrowserModule,
