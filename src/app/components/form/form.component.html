@@ -50,6 +50,7 @@
     <app-multi-field
             (valueChange)="debounceInput$.next({type: 'features', value: $event})"
             [fields]="['Name', 'Feature description']"
+            [value]="features$ | async"
     ></app-multi-field>
 
     <app-section-title [title]="'Repositories'"></app-section-title>
