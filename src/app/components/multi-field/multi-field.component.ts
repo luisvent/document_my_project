@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {UtilsService} from "../../services/utils.service";
-import {FeatureOptions} from "../../interfaces/feature-options.interface";
 
 @Component({
     selector: 'app-multi-field',
@@ -22,12 +21,20 @@ export class MultiFieldComponent {
     }
 
     @Input()
-    set value(features: FeatureOptions[] | null) {
-        if (!features) return;
+    set value(values: any[] | null) {
+        if (!values) return;
+
 
         this.entries = [];
-        features.forEach(feature => {
-            this.entries.push(this.generateFields([feature.title, feature.description]));
+        values.forEach(value => {
+            console.log(typeof value)
+            if (typeof value === 'string') {
+                this.entries.push(this.generateFields([value]));
+            } else if (typeof value === 'object') {
+                Object.keys(value).forEach(key => {
+                    this.entries.push(this.generateFields([value[key], value[key]]));
+                })
+            }
         })
 
         console.log(this.entries)
