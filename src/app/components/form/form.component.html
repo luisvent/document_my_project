@@ -150,6 +150,7 @@
             (valueChange)="debounceInput$.next({type: 'installation', value: $event})"
             [fields]="['Description']"
             [textarea]="true"
+            [value]="installSteps$ | async"
     ></app-multi-field>
 
     <h6>Usage</h6>
