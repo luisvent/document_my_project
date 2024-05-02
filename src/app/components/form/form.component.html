@@ -231,6 +231,7 @@
         #licenseCheckbox
         (change)="inputChange('license', $event.target)"
         [title]="'Add License'"
+        [value]="(license$ | async) !== null"
     ></app-form-checkbox>
 
     <app-form-radio
@@ -238,6 +239,7 @@
         (change)=" inputChange('licenseType', $event.target)"
         [ngClass]="{'hidden': !licenseCheckbox.value}"
         [options]="licenses"
+        [value]="(license$ | async)?.type"
     ></app-form-radio>
 
     <app-form-field
