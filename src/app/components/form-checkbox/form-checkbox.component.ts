@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
 import {UtilsService} from "../../services/utils.service";
 
 @Component({
@@ -6,7 +6,7 @@ import {UtilsService} from "../../services/utils.service";
     templateUrl: './form-checkbox.component.html',
     styleUrls: ['./form-checkbox.component.css']
 })
-export class FormCheckboxComponent {
+export class FormCheckboxComponent implements AfterViewInit {
 
     @Input()
     disabled = false;
@@ -21,12 +21,19 @@ export class FormCheckboxComponent {
     change = new EventEmitter<Event>();
 
     @Input()
-    value: boolean | null = false;
+    value: boolean | undefined | null = false;
 
     id = '';
 
     constructor(private utilsService: UtilsService) {
         this.id = `checkbox-${this.utilsService.guid()}`;
+    }
+
+    ngAfterViewInit(): void {
+        if (this.value) {
+            const toggleInput = document.querySelector(`#${this.id}`);
+            toggleInput?.dispatchEvent(new Event('change', {bubbles: true}))
+        }
     }
 
     checkboxChange(e: Event) {

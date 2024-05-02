@@ -130,6 +130,7 @@
         #techStack
         (change)=" inputChange('tech-stack', $event.target)"
         [title]="'Add Tech Stack'"
+        [value]="(stack$ | async)?.length! > 0"
     ></app-form-checkbox>
 
     <div [ngClass]="techStack.value? '' : 'hidden'"
@@ -183,6 +184,7 @@
             #contributionCheckbox
             (change)=" inputChange('contribution', $event.target)"
             [title]="'Add Contribution info'"
+            [value]="(contribution$ | async)?.add"
         ></app-form-checkbox>
         <app-form-field
                 (change)="inputChange('contribution-guideline', $event.target)"
