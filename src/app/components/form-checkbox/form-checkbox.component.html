@@ -16,7 +16,7 @@
         <label class="inline-flex items-center cursor-pointer">
             <input
                     (change)="checkboxChange($event)"
-                    [attr.checked]="value"
+                    [attr.checked]="value? value: null"
                     [disabled]="disabled"
                     [id]="id"
                     class="sr-only peer" type="checkbox">
