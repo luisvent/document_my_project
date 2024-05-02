@@ -13,11 +13,11 @@ export class FormRadioComponent {
     @Output()
     change = new EventEmitter<Event>();
 
-    value = '';
+    @Input()
+    value: string | undefined = '';
 
     constructor() {
     }
-
 
     radioChange(e: Event) {
         this.value = (e.target as HTMLInputElement).value;
