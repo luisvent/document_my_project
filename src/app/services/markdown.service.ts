@@ -87,8 +87,13 @@ export class MarkdownService {
             result += section ? `${section}\n\n` : '';
         }
 
-        result = this.generateTableOfContentsFromMarkdown(result);
-        result = this.generateLinksSection(result);
+        if (state.contentTable) {
+            result = this.generateTableOfContentsFromMarkdown(result);
+        }
+
+        if (state.navigationLinks) {
+            result = this.generateLinksSection(result);
+        }
 
         return result;
     }
