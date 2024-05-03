@@ -82,7 +82,21 @@
             </div>
 
         </div>
-        <div></div>
+        <div>
+            <button (click)="updateFileRequest()"
+                    class="toggle-rtl flex items-center w-9 h-9 mr-3 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-gray-300 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    data-toggle-direction="ltr"
+                    data-tooltip-target="clipboard-example-toggle-rtl" hidden
+                    type="button">
+                <svg aria-hidden="true" fill="none" height="20"
+                     stroke="currentColor" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4"
+                          stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2"/>
+                </svg>
+
+            </button>
+        </div>
         <div></div>
         <!--        hidden buttons-->
         <div class="w-full flex justify-end col-span-1">
