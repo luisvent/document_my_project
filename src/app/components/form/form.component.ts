@@ -40,7 +40,6 @@ import {LicenseOptions} from "../../interfaces/license-options.interface";
 import {ContributorOptions} from "../../interfaces/contributor-options.interface";
 import {ContributionOptions} from "../../interfaces/contribution-options.interface";
 import {AcknowledgeOptions} from "../../interfaces/acknowledge-options.interface";
-import {TechnologyOptions} from "../../interfaces/technology-options.interface";
 import {FeatureOptions} from "../../interfaces/feature-options.interface";
 
 interface InputInteraction {
@@ -74,7 +73,7 @@ export class FormComponent implements OnInit {
     public logo$: Observable<string> = this.store.select(selectLogo);
     public mainImage$: Observable<string> = this.store.select(selectMainImage);
     public screenshots$: Observable<string[]> = this.store.select(selectScreenshots);
-    public stack$: Observable<TechnologyOptions[]> = this.store.select(selectStackTech);
+    public stack$: Observable<string[]> = this.store.select(selectStackTech);
     public installSteps$: Observable<string[]> = this.store.select(selectInstallSteps);
     public usageSteps$: Observable<string[]> = this.store.select(selectUsageSteps);
     public parameters$: Observable<{
@@ -104,6 +103,7 @@ export class FormComponent implements OnInit {
         this.state$.subscribe(state => {
             console.log(state)
             if (state.generateMarkdown) {
+                console.log(state)
                 this.BuildMarkdown(state);
             }
         })
@@ -113,6 +113,7 @@ export class FormComponent implements OnInit {
 
     BuildMarkdown(state: EditorState) {
         const markdown = this.mdService.Build(state);
+        console.log(markdown)
         this.store.dispatch(Actions.markdownGenerated({markdown}));
     }
 

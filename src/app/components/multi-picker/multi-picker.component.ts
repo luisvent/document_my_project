@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {UtilsService} from "../../services/utils.service";
 
 export interface PickerItem {
@@ -12,13 +12,16 @@ export interface PickerItem {
     templateUrl: './multi-picker.component.html',
     styleUrls: ['./multi-picker.component.css']
 })
-export class MultiPickerComponent {
+export class MultiPickerComponent implements OnInit, OnChanges {
 
     @Input()
     items: PickerItem[] = [];
 
     @Input()
     title: string = 'items';
+
+    @Input()
+    value: string[] = [];
 
     @Output()
     selectedItemsChange = new EventEmitter<PickerItem[]>();
@@ -28,6 +31,19 @@ export class MultiPickerComponent {
     id = this.utilsService.guid();
 
     constructor(private utilsService: UtilsService) {
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        if (this.value.length === 0) {
+            this.selectedItems = [];
+        }
+    }
+
+    ngOnInit(): void {
+        if (this.value.length > 0) {
+            const items = this.items.filter(i => this.value.includes(i.value));
+            this.selectedItems = [...new Set(items)];
+        }
     }
 
     itemChange(event: Event, item: PickerItem) {

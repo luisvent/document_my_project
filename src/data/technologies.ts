@@ -404,7 +404,6 @@ export const technologies: any[] = [
     {name: 'Sails.js', value: 'sailsjs', description: 'MVC framework for Node.js', mainColor: '#16A085'},
     {name: 'FeathersJS', value: 'feathersjs', description: 'API-first web framework', mainColor: '#3A9AD9'},
     {name: 'LoopBack', value: 'loopback', description: 'Node.js API framework by IBM', mainColor: '#548BB8'},
-    {name: 'Meteor', value: 'meteor', description: 'Full-stack JavaScript framework', mainColor: '#DE4F4F'},
     {name: 'Rocket', value: 'rocket', description: 'Rust web framework for speed', mainColor: '#000000'},
     {name: 'Vapor', value: 'vapor', description: 'Web framework for Swift by Apple', mainColor: '#F05138'},
     {

@@ -139,6 +139,7 @@
         <app-multi-picker
                 (selectedItemsChange)="selectedTechnologies($event)"
                 [items]="technologies"
+                [value]="(stack$ | async)!"
                 title="technologies"
         ></app-multi-picker>
     </div>

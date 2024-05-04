@@ -52,19 +52,21 @@ export const testData: EditorState = {
             description: 'Use AI to autogenerate all the info for your project'
         }
     ],
-    technologies: [{
-        name: 'Angular',
-        value: 'angular',
-        description: "A front-end web application framework",
-        mainColor: "#DD0031"
-    },
+    technologies: [
+        {name: 'Ember.js', value: 'ember', description: "A front-end web application framework", mainColor: "#E04E39"},
         {
             name: 'Vue.js',
             value: 'vue',
             description: "An open-source JavaScript library for building user interfaces",
             mainColor: "#41B883"
         },
-        {name: 'Ember.js', value: 'ember', description: "A front-end web application framework", mainColor: "#E04E39"},
+        {
+            name: 'Angular',
+            value: 'angular',
+            description: "A front-end web application framework",
+            mainColor: "#DD0031"
+        },
+
         {
             name: 'Svelte',
             value: 'svelte',
