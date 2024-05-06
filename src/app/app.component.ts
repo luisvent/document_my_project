@@ -5,6 +5,7 @@ import {AppState} from "./store/state.interface";
 import {initFlowbite} from "flowbite";
 import {MarkdownService} from "./services/markdown.service";
 import {ToastService} from "./services/toast.service";
+import {Actions} from "./store/actions/action-types";
 
 @Component({
     selector: 'app-root',
@@ -24,4 +25,8 @@ export class AppComponent implements OnInit {
         // this.markdownData = this.mdService.test();
     }
 
+    GenerateMarkdown() {
+        this.store.dispatch(Actions.generateMarkdown({generate: true}));
+        window.scroll(0, 0);
+    }
 }

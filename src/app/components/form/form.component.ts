@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {technologies} from "../../../data/technologies";
 import {PickerItem} from "../multi-picker/multi-picker.component";
 import {Actions} from "../../store/actions/action-types";
@@ -53,6 +53,8 @@ interface InputInteraction {
     styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
+    @Output()
+    generateMarkdown = new EventEmitter();
 
     technologies = technologies;
     licenses: { name: string; value: string }[] = [];
@@ -129,9 +131,8 @@ export class FormComponent implements OnInit {
         })
     }
 
-    generateMarkdown() {
-        this.store.dispatch(Actions.generateMarkdown({generate: true}));
-        window.scroll(0, 0);
+    generate() {
+        this.generateMarkdown.emit();
     }
 
     inputChange(type: string, target: EventTarget | null | boolean) {
