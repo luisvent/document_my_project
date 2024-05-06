@@ -14,4 +14,14 @@ export class SvgIconComponent {
 
 export type IconType =
     'info' |
+    'list' |
+    'github' |
+    'image' |
+    'layers' |
+    'rect-list' |
+    'star' |
+    'user-group' |
+    'user-circle' |
+    'award' |
+    'book' |
     'none'

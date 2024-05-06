@@ -1,5 +1,8 @@
 <app-background></app-background>
-
+<header class="isolate w-full flex flex-col items-center justify-center mb-2">
+    <h2 class="font-agrandir mt-4 text-slate-800">Document My Project</h2>
+    <p class="font-writter mt-4 text-slate-500">Easily create markdown documentation for your project</p>
+</header>
 <div class="absolute w-full flex gap-12 justify-center flex-col lg:flex-row items-center lg:items-start">
     <main [ngClass]="{'max-w-96': generatedMarkdown$ | async}" class="block w-full max-w-[700px]">
         <app-form
