@@ -2,8 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    @font-face {
+        font-family: Writter;
+        src: url('./assets/fonts/iA Writter Quattro S Regular.woff2') format("woff2");
+    }
+    @font-face {
+        font-family: Agrandir;
+        src: url('./assets/fonts/PP Agrandir Regular.woff2') format("woff2");
+    }
+    @font-face {
+        font-family: TN;
+        src: url('./assets/fonts/TN Medium.woff2') format("woff2");
+    }
+}
+
 body {
-    @apply text-slate-600
+    @apply text-slate-600 font-writter
 }
 
 p {
@@ -15,7 +30,7 @@ h1 {
 }
 
 h2 {
-    @apply text-4xl font-bold dark:text-white mb-2 mt-3 text-slate-600
+    @apply text-5xl font-bold dark:text-white mb-2 mt-3 text-slate-600
 }
 
 h3 {

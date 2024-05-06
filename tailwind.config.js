@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme'
+
 module.exports = {
     content: [
         "./src/**/*.{html,ts}",
@@ -8,6 +10,11 @@ module.exports = {
         extend: {
             height: {
                 '100vh-h-7': 'calc(100vh - 12rem)',
+            },
+            fontFamily: {
+                writter: ["Writter", ...defaultTheme.fontFamily.sans],
+                agrandir: ["Agrandir", ...defaultTheme.fontFamily.sans],
+                tn: ["TN", ...defaultTheme.fontFamily.sans],
             },
         },
     },
