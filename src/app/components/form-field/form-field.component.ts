@@ -28,7 +28,7 @@ export class FormFieldComponent {
         e.stopPropagation();
         e.preventDefault();
 
-        // this.change.emit(e);
+        this.change.emit(e);
         this.valueChange.emit((e.target as HTMLInputElement).value);
     }
 }
