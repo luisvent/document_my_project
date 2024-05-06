@@ -21,6 +21,7 @@ import {SectionTitleComponent} from './components/section-title/section-title.co
 import {FormRadioComponent} from './components/form-radio/form-radio.component';
 import {MultiFieldComponent} from './components/multi-field/multi-field.component';
 import {LogPipe} from "./pipes/log.pipe";
+import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import {LogPipe} from "./pipes/log.pipe";
         SectionTitleComponent,
         FormRadioComponent,
         MultiFieldComponent,
-        LogPipe
+        LogPipe,
+        SvgIconComponent
     ],
     imports: [
         BrowserModule,
