@@ -21,7 +21,8 @@ import {SectionTitleComponent} from './components/section-title/section-title.co
 import {FormRadioComponent} from './components/form-radio/form-radio.component';
 import {MultiFieldComponent} from './components/multi-field/multi-field.component';
 import {LogPipe} from "./pipes/log.pipe";
-import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
+import {SvgIconComponent} from './components/svg-icon/svg-icon.component';
+import {HeaderComponent} from './components/header/header.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { SvgIconComponent } from './components/svg-icon/svg-icon.component';
         FormRadioComponent,
         MultiFieldComponent,
         LogPipe,
-        SvgIconComponent
+        SvgIconComponent,
+        HeaderComponent
     ],
     imports: [
         BrowserModule,
