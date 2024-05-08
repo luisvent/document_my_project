@@ -32,7 +32,7 @@ export class ToastService {
 
     private showtoast(toast: Toast) {
         this.toasts.next([...this.toasts.value, toast]);
-        this.removeToast(toast); // Remove toast after 3 seconds.
+        this.removeToast(toast); // Remove toast after 2 seconds.
     }
 
     private removeToast(toast: Toast) {
