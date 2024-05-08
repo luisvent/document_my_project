@@ -48,10 +48,10 @@ export class MarkdownService {
             this.generateLinksPlaceholder(),
             state.mainImageUrl && this.generateCenteredImages([{url: state.mainImageUrl, alt: 'Main Image'}]),
             this.generateTableContentPlaceholder(),
-            state.description && this.generateDescription([state.description], state.titleIcons),
-            state.images.length > 0 && this.generateShowcaseSection(state.images, state.titleIcons),
-            state.features.length > 0 && this.generateFeaturesSection(state.features, state.titleIcons),
-            state.technologies.length > 0 && this.generateTechStackSection(state.technologies, state.titleIcons),
+            state.description && this.generateDescription([state.description], state.sectionIcons),
+            state.images.length > 0 && this.generateShowcaseSection(state.images, state.sectionIcons),
+            state.features.length > 0 && this.generateFeaturesSection(state.features, state.sectionIcons),
+            state.technologies.length > 0 && this.generateTechStackSection(state.technologies, state.sectionIcons),
             // this.generateInstallSection({
             //     projectName: 'My Awesome Project',
             //     packageManager: 'npm',
@@ -71,15 +71,15 @@ export class MarkdownService {
             ...(state.installSteps.length > 0 ||
             state.usageSteps.length > 0 ||
             state.configuration.parameters.length > 0 ?
-                [this.generateTitle(`${state.titleIcons ? '⚙ ' : ''}️Setup`),
+                [this.generateTitle(`${state.sectionIcons ? '⚙ ' : ''}️Setup`),
                     this.generateInstallationSection(state.installSteps),
                     this.generateUsageSection(state.usageSteps),
                     this.generateParametersTable(state.configuration.parameters)] : []),
-            state.acknowledgments.length > 0 && this.generateAcknowledgementsSection(state.acknowledgments, state.titleIcons),
-            state.contribution.add && this.generateContributionSection(state.contribution, state.contributors, state.titleIcons),
-            this.generateAuthorSection(state.author, state.titleIcons),
-            this.generateLicenseSection(state.license, state.titleIcons),
-            this.generateBackToTop(state.titleIcons),
+            state.acknowledgments.length > 0 && this.generateAcknowledgementsSection(state.acknowledgments, state.sectionIcons),
+            state.contribution.add && this.generateContributionSection(state.contribution, state.contributors, state.sectionIcons),
+            this.generateAuthorSection(state.author, state.sectionIcons),
+            this.generateLicenseSection(state.license, state.sectionIcons),
+            state.backToTop && this.generateBackToTop(state.sectionIcons),
             this.generateWatermark()
         ];
 

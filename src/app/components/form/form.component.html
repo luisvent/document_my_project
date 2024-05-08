@@ -250,6 +250,23 @@
             [textarea]="true"
     ></app-form-field>
 
+    <app-section-title [iconType]="'adjustment'" [title]="'Options'"></app-section-title>
+    <small>Optional configuration for your readme file</small>
+
+    <app-form-checkbox
+        #backToTopCheckbox
+        (change)="inputChange('back-to-top', $event.target)"
+        [title]="'Add [Back to top]'"
+        [value]="(backToTop$ | async)"
+    ></app-form-checkbox>
+
+    <app-form-checkbox
+        #sectionIconsCheckbox
+        (change)="inputChange('section-icons', $event.target)"
+        [title]="'Add section Icons'"
+        [value]="(sectionIcons$ | async)"
+    ></app-form-checkbox>
+
 </div>
 <button (click)="generate()"
         class="text-white gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

@@ -12,6 +12,7 @@ import {
     selectAcknowledgment,
     selectAuthorGithubUsername,
     selectAuthorName,
+    selectBackToTop,
     selectContentTable,
     selectContribution,
     selectContributors,
@@ -29,6 +30,7 @@ import {
     selectRepository,
     selectRepositoryBadges,
     selectScreenshots,
+    selectSectionIcons,
     selectShortDescription,
     selectStackTech,
     selectTitle,
@@ -72,6 +74,8 @@ export class FormComponent implements OnInit {
     public repositoryBadges$: Observable<boolean> = this.store.select(selectRepositoryBadges);
     public npmUrl$: Observable<string> = this.store.select(selectNpmPackage);
     public npmBadges$: Observable<boolean> = this.store.select(selectNpmBadges);
+    public backToTop$: Observable<boolean> = this.store.select(selectBackToTop);
+    public sectionIcons$: Observable<boolean> = this.store.select(selectSectionIcons);
     public logo$: Observable<string> = this.store.select(selectLogo);
     public mainImage$: Observable<string> = this.store.select(selectMainImage);
     public screenshots$: Observable<string[]> = this.store.select(selectScreenshots);
@@ -163,6 +167,14 @@ export class FormComponent implements OnInit {
 
             case 'navigation-links':
                 this.store.dispatch(Actions.modifyNavigation({navigation: input.value}));
+                break;
+
+            case 'section-icons':
+                this.store.dispatch(Actions.toggleSectionIcons({sectionIcons: input.value}));
+                break;
+
+            case 'back-to-top':
+                this.store.dispatch(Actions.toggleBackToTop({backToTop: input.value}));
                 break;
 
             case 'features':

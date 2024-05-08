@@ -24,4 +24,5 @@ export type IconType =
     'user-circle' |
     'award' |
     'book' |
+    'adjustment' |
     'none'

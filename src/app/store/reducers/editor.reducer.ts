@@ -18,7 +18,8 @@ export interface EditorState {
     shortDescription: string;
     description: string,
     github: GitHubOptions,
-    titleIcons: boolean,
+    sectionIcons: boolean,
+    backToTop: boolean,
     npm: NPMOptions,
     logoUrl: string;
     navigationLinks: boolean;
@@ -47,7 +48,8 @@ const initialState: EditorState = {
     shortDescription: 'string',
     description: '',
     navigationLinks: false,
-    titleIcons: false,
+    sectionIcons: false,
+    backToTop: true,
     contentTable: false,
     github: {
         username: '',
@@ -194,6 +196,14 @@ export const editorReducer = createReducer(
 
     on(Actions.addLicense, (state, action): EditorState => {
         return newState(state, {license: action.license})
+    }),
+
+    on(Actions.toggleBackToTop, (state, action): EditorState => {
+        return newState(state, {backToTop: action.backToTop})
+    }),
+
+    on(Actions.toggleSectionIcons, (state, action): EditorState => {
+        return newState(state, {sectionIcons: action.sectionIcons})
     }),
 
     on(Actions.removeLicense, (state, action): EditorState => {
