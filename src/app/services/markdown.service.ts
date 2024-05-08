@@ -47,10 +47,10 @@ export class MarkdownService {
             this.generateLinksPlaceholder(),
             state.mainImageUrl && this.generateCenteredImages([{url: state.mainImageUrl, alt: 'Main Image'}]),
             this.generateTableContentPlaceholder(),
-            state.description && this.generateDescription([state.description]),
-            state.images.length > 0 && this.generateShowcaseSection(state.images),
-            state.features.length > 0 && this.generateFeaturesSection(state.features),
-            state.technologies.length > 0 && this.generateTechStackSection(state.technologies),
+            state.description && this.generateDescription([state.description], state.titleIcons),
+            state.images.length > 0 && this.generateShowcaseSection(state.images, state.titleIcons),
+            state.features.length > 0 && this.generateFeaturesSection(state.features, state.titleIcons),
+            state.technologies.length > 0 && this.generateTechStackSection(state.technologies, state.titleIcons),
             // this.generateInstallSection({
             //     projectName: 'My Awesome Project',
             //     packageManager: 'npm',
@@ -70,14 +70,14 @@ export class MarkdownService {
             ...(state.installSteps.length > 0 ||
             state.usageSteps.length > 0 ||
             state.configuration.parameters.length > 0 ?
-                [this.generateTitle('Setup'),
+                [this.generateTitle(`${state.titleIcons ? '⚙ ' : ''}️Setup`),
                     this.generateInstallationSection(state.installSteps),
                     this.generateUsageSection(state.usageSteps),
                     this.generateParametersTable(state.configuration.parameters)] : []),
-            state.acknowledgments.length > 0 && this.generateAcknowledgementsSection(state.acknowledgments),
-            state.contribution.add && this.generateContributionSection(state.contribution, state.contributors),
-            this.generateAuthorSection(state.author),
-            this.generateLicenseSection(state.license),
+            state.acknowledgments.length > 0 && this.generateAcknowledgementsSection(state.acknowledgments, state.titleIcons),
+            state.contribution.add && this.generateContributionSection(state.contribution, state.contributors, state.titleIcons),
+            this.generateAuthorSection(state.author, state.titleIcons),
+            this.generateLicenseSection(state.license, state.titleIcons),
             this.generateWatermark()
         ];
 
@@ -338,7 +338,7 @@ export class MarkdownService {
         return badges;
     }
 
-    generateTableOfContentsFromMarkdown(markdownText: string): string {
+    generateTableOfContentsFromMarkdown(markdownText: string, addTitleIcons = false): string {
         const headingRegex = /^(#{1,6})\s*(.*?)$/gm;
         const slugify = (text: string) =>
             text
@@ -355,7 +355,7 @@ export class MarkdownService {
             headings.push({text, level});
         }
 
-        let tableOfContents = '## Table of Contents\n <details>\n<summary>Open Contents</summary>\n\n';
+        let tableOfContents = this.generateTitle(`${addTitleIcons ? '📝 ' : ''}️Table of Contents`) + '\n <details>\n<summary>Open Contents</summary>\n\n';
 
         headings.forEach((heading) => {
             const slug = slugify(heading.text);
@@ -368,9 +368,9 @@ export class MarkdownService {
         return markdownText.replace(this.TABLE_CONTENT_PLACEHOLDER, tableOfContents);
     }
 
-    generateAuthorSection(author: AuthorData) {
+    generateAuthorSection(author: AuthorData, addTitleIcons = false) {
         const aboutAuthorSection = `
-## About the Author
+${this.generateTitle(`${addTitleIcons ? '👨🏻‍ ' : ''}About the Author`)}
 
 **${author.name}**
 
@@ -419,8 +419,8 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         return markdownContent;
     }
 
-    generateDescription(descriptions: string[]): string {
-        let markdownContent = '## About the Project\n\n';
+    generateDescription(descriptions: string[], addTitleIcons = false): string {
+        let markdownContent = this.generateTitle(`${addTitleIcons ? 'ℹ️ ' : ''}About the Project`) + '\n\n';
         descriptions.forEach(description => {
             markdownContent += description + '\n\n';
         });
@@ -451,9 +451,10 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         return markdownContent;
     }
 
-    generateContributionSection(contribution: ContributionOptions, contributors: ContributorOptions[]): string {
+    generateContributionSection(contribution: ContributionOptions, contributors: ContributorOptions[],
+                                addTitleIcons = false): string {
         const {contributionGuidelinesLink} = contribution;
-        let contributionSection = `## Contributing\n\nWe welcome contributions from the community! If you would like to contribute to this project, please follow the guidelines below.\n`;
+        let contributionSection = `${this.generateTitle(`${addTitleIcons ? '👏🏻 ' : ''}Contributing`)}\n\nWe welcome contributions from the community! If you would like to contribute to this project, please follow the guidelines below.\n`;
 
         // Generic contribution information
         contributionSection += `\n### Ways to Contribute\n\n- Report bugs or issues by opening a new issue on our GitHub repository.
@@ -482,8 +483,8 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         return contributionSection;
     }
 
-    generateAcknowledgementsSection(acknowledgements: AcknowledgeOptions[]): string {
-        let acknowledgementsSectionContent = '## Acknowledgements\n\n';
+    generateAcknowledgementsSection(acknowledgements: AcknowledgeOptions[], addTitleIcons = false): string {
+        let acknowledgementsSectionContent = this.generateTitle(`${addTitleIcons ? '🏆 ' : ''}Acknowledgements`) + '\n\n';
 
         acknowledgements.forEach((item) => {
             const {title, url, description} = item;
@@ -493,9 +494,9 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         return acknowledgementsSectionContent;
     }
 
-    generateLicenseSection(licenseSection: LicenseOptions): string {
+    generateLicenseSection(licenseSection: LicenseOptions, addTitleIcons = false): string {
         const {type, customText} = licenseSection;
-        let licenseSectionContent = '## License\n\n';
+        let licenseSectionContent = this.generateTitle(`${addTitleIcons ? '📖 ' : ''}License`,) + '\n\n';
 
         switch (type) {
             case 'MIT':
@@ -524,8 +525,8 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         return licenseSectionContent;
     }
 
-    generateFeaturesSection(features: FeatureOptions[]): string {
-        let featuresSection = '## Features\n\n';
+    generateFeaturesSection(features: FeatureOptions[], addTitleIcons = false): string {
+        let featuresSection = this.generateTitle(`${addTitleIcons ? '⭐️ ' : ''}Features`) + '\n\n';
 
         features.forEach((feature, index) => {
             const {title, description} = feature;
@@ -567,11 +568,11 @@ ${description}
         return foundTechnologies;
     }
 
-    generateTechStackSection(technologies: TechnologyOptions[]) {
-        let stackSection = `## Stack Tech\n`;
+    generateTechStackSection(technologies: TechnologyOptions[], addTitleIcons = false) {
+        let stackSection = this.generateTitle(`${addTitleIcons ? '🛠 ' : ''}Stack Tech`) + '\n';
 
         technologies.forEach(tech => {
-            stackSection += `- ${this.generateBadge(tech.name, 'https://www.typescriptlang.org/', tech.mainColor.replace('#', ''), tech.value, tech.description)}}\n`;
+            stackSection += `- ${this.generateBadge(tech.name, '', tech.mainColor.replace('#', ''), tech.value, tech.description)}}\n`;
         });
 
         return stackSection;
@@ -595,7 +596,7 @@ ${description}
             usageSteps = [],
         } = options;
 
-        let installSection = `## Installation\n\nTo install ${projectName}, follow these steps:\n\n`;
+        let installSection = `${this.generateTitle('Installation')}\n\nTo install ${projectName}, follow these steps:\n\n`;
 
         // Add setup section if requested
         if (includeSetup && setupSteps.length > 0) {
@@ -625,7 +626,7 @@ ${description}
 
         // Add usage section if requested
         if (includeUsage && usageSteps.length > 0) {
-            installSection += `## Usage\n\nAfter installation, you can use the project by following these steps:\n\n`;
+            installSection += `${this.generateTitle('Usage')}\n\nAfter installation, you can use the project by following these steps:\n\n`;
             usageSteps.forEach((step, index) => {
                 installSection += `${index + 1}. ${step}\n\n`;
             });
@@ -700,13 +701,13 @@ ${description}
      * @param images - An array of image data objects with author and url properties.
      * @returns The formatted showcase section as a string.
      */
-    generateShowcaseSection(images: string[]): string {
+    generateShowcaseSection(images: string[], addTitleIcons = false): string {
         if (images.length === 0) {
             return '';
         }
 
         const columns = 2;
-        let showcaseSection = `## Showcase\n\n <center>\n\n<table>\n`;
+        let showcaseSection = `${this.generateTitle(`${addTitleIcons ? '🏞 ' : ''}Showcase`)}\n\n <center>\n\n<table>\n`;
 
         const numRows = Math.ceil(images.length / columns);
         for (let i = 0; i < numRows; i++) {
