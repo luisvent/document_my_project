@@ -79,6 +79,7 @@ export class MarkdownService {
             state.contribution.add && this.generateContributionSection(state.contribution, state.contributors, state.titleIcons),
             this.generateAuthorSection(state.author, state.titleIcons),
             this.generateLicenseSection(state.license, state.titleIcons),
+            this.generateBackToTop(state.titleIcons),
             this.generateWatermark()
         ];
 
@@ -506,6 +507,10 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         return acknowledgementsSectionContent;
     }
 
+    generateBackToTop(addIcon = true) {
+        return `<p align="right"><a href="#readme-top">${addIcon ? 'Top ⬆️' : '(Back to top)'}</a></p>`;
+    }
+
     generateLicenseSection(licenseSection: LicenseOptions, addTitleIcons = false): string {
         const {type, customText} = licenseSection;
         let licenseSectionContent = this.generateTitle(`${addTitleIcons ? '📖 ' : ''}License`,) + '\n\n';
@@ -557,8 +562,6 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
 <div align="center">
 
 <a href="${url}" target="_blank" title="Go to ${url} website"><img width="196px" alt="${title}" src="${imgUrl}"></a>
-
-<a name="readme-top"></a>
 
 # ${title}
 
