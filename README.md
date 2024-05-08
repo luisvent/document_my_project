@@ -1,7 +1,3 @@
-# WIP PROJECT README
-
----
-
 <p align="center">
 <a href="https://github.com/luisvent/document_my_project/graphs/contributors"><img src="https://img.shields.io/github/contributors/luisvent/document_my_project.svg?style=for-the-badge" alt="Contributors"></a>
 <a href="https://github.com/luisvent/document_my_project/network/members"><img src="https://img.shields.io/github/forks/luisvent/document_my_project.svg?style=for-the-badge" alt="Forks"></a>
@@ -11,7 +7,7 @@
 
 <div align="center">
 
-<a href="https//:url.com" target="_blank" title="Go to https//:url.com website"><img width="196px" alt="Document My Project" src="https://api.lorem.space/image/game?w=200&h=200"></a>
+<a href="https//:url.com" target="_blank"><img width="196px" alt="Document My Project" src="./docs/icon.png"></a>
 
 <a name="readme-top"></a>
 
@@ -21,22 +17,9 @@ Easily create markdown documentation for your project
 
 </div>
 
-
-<p align="center">
-            <a aria-label="NPM Version" href="https://www.npmjs.com/package/http-status-utility">
-            <img alt="" src="https://img.shields.io/npm/v/http-status-utility.svg?label=NPM&logo=npm&style=for-the-badge&color=0470FF&logoColor=white">
-          </a>
-            <a aria-label="NPM Download Count" href="https://www.npmjs.com/package/http-status-utility">
-            <img alt="" src="https://img.shields.io/npm/dt/http-status-utility?label=Downloads&style=for-the-badge&color=67ACF3">
-          </a>
-            <a aria-label="palm-api Size" href="https://www.npmjs.com/package/http-status-utility">
-            <img alt="" src="https://img.shields.io/bundlephobia/minzip/http-status-utility?style=for-the-badge&color=F9DBBC">
-          </a>
-          </p>
-
 <div align="center"><h4><a href="#table-of-contents">Table of Contents</a> • <a href="#about-the-project">About the Project</a> • <a href="#showcase">Showcase</a> • <a href="#features">Features</a> • <a href="#stack-tech">Stack Tech</a> • <a href="#setup">Setup</a> • <a href="#acknowledgements">Acknowledgements</a> • <a href="#contributing">Contributing</a> • <a href="#about-the-author">About the Author</a> • <a href="#license">License</a></h4></div>
 
-<p align="center"><img src="https://api.lorem.space/image/game?w=300&h=300" alt="Main Image"/></p>
+<p align="center"><img src="./docs/dmp_1.png" alt="Main Image"/></p>
 
 ## Table of Contents
 
