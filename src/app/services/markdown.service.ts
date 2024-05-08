@@ -25,6 +25,7 @@ export class MarkdownService {
     Build(state: EditorState) {
 
         const sections = [
+            this.generateReadmeInfo(),
             state.github.badges && this.generateGitHubBadges({
                 username: state.github.username,
                 repo: state.github.repo,
@@ -277,6 +278,18 @@ export class MarkdownService {
             '## Setup' : '';
     }
 
+    generateReadmeInfo() {
+        const info = `<a name="readme-top"></a>
+<!--
+*** Thanks for using Document My Project. (https://github.com/luisvent/document_my_project) 
+*** If you have a suggestion that would make this better, please fork  
+*** the repo and create a pull request or simply open an issue.
+*** Don't forget to give the project a star!
+-->`;
+
+        return info;
+    }
+
     generateTableContentPlaceholder() {
         return this.TABLE_CONTENT_PLACEHOLDER;
     }
@@ -385,8 +398,7 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         badgeStyle: 'flat' | 'flat-square' | 'plastic' | 'for-the-badge' = 'for-the-badge'
     ): string {
 
-        const badges = `
-        <p align="center"><a href="https://github.com/${github.username}/${github.repo}/graphs/contributors"><img src="https://img.shields.io/github/contributors/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Contributors"></a>
+        const badges = `<p align="center"><a href="https://github.com/${github.username}/${github.repo}/graphs/contributors"><img src="https://img.shields.io/github/contributors/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Contributors"></a>
         <a href="https://github.com/${github.username}/${github.repo}/network/members"><img src="https://img.shields.io/github/forks/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Forks"></a>
         <a href="https://github.com/${github.username}/${github.repo}/stargazers"><img src="https://img.shields.io/github/stars/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Stargazers"></a>
         <a href="https://github.com/${github.username}/${github.repo}/issues"><img src="https://img.shields.io/github/issues/${github.username}/${github.repo}.svg?style=${badgeStyle}" alt="Issues"></a></p><br/>`;
