@@ -28,13 +28,7 @@ Easily create markdown documentation for your project
 
 - [Document My Project](#document-my-project)
     - [About the Project](#about-the-project)
-    - [Showcase](#showcase)
-    - [Features](#features)
     - [Stack Tech](#stack-tech)
-    - [Setup](#setup)
-        - [Installation](#installation)
-        - [Usage](#usage)
-        - [Parameters](#parameters)
     - [Acknowledgements](#acknowledgements)
     - [Contributing](#contributing)
         - [Ways to Contribute](#ways-to-contribute)
@@ -50,37 +44,6 @@ Easily create markdown documentation for your project
 Tired of manually writing README files? Introducing an web app that streamlines your documentation process for Github
 projects. Our intuitive platform lets you generate beautiful and informative Markdown documentation in seconds.
 
-## Showcase
-
- <center>
-
-<table>
-<tr>
-<td><a href="https://api.lorem.space/image/dashboard?w=200&h=200"><img width="320" src="https://api.lorem.space/image/dashboard?w=200&h=200"></a></td>
-<td><a href="https://api.lorem.space/image/dashboard?w=200&h=200"><img width="320" src="https://api.lorem.space/image/dashboard?w=200&h=200"></a></td>
-</tr>
-<tr>
-<td><a href="https://api.lorem.space/image/dashboard?w=200&h=200"><img width="320" src="https://api.lorem.space/image/dashboard?w=200&h=200"></a></td>
-<td><a href="https://api.lorem.space/image/dashboard?w=200&h=200"><img width="320" src="https://api.lorem.space/image/dashboard?w=200&h=200"></a></td>
-</tr>
-</table>
-
-</center>
-
-## Features
-
-1. **AI Generation**
-
-Use AI to autogenerate all the info for your project
-
-2. **Feature 2**
-
-Use AI to autogenerate all the info for your project
-
-3. **Feature 3**
-
-Use AI to autogenerate all the info for your project
-
 ## Stack Tech
 
 - [![Angular][Angular-badge]][Angular-url] - A front-end web application framework
@@ -88,74 +51,6 @@ Use AI to autogenerate all the info for your project
 [Angular-badge]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular
 
 [Angular-url]: https://www.typescriptlang.org/}
-
-- [![Vue.js][Vue.js-badge]][Vue.js-url] - An open-source JavaScript library for building user interfaces
-
-[Vue.js-badge]: https://img.shields.io/badge/Vue.js-41B883?style=for-the-badge&logo=vue
-
-[Vue.js-url]: https://www.typescriptlang.org/}
-
-- [![Ember.js][Ember.js-badge]][Ember.js-url] - A front-end web application framework
-
-[Ember.js-badge]: https://img.shields.io/badge/Ember.js-E04E39?style=for-the-badge&logo=ember
-
-[Ember.js-url]: https://www.typescriptlang.org/}
-
-- [![Svelte][Svelte-badge]][Svelte-url] - A high-performance reactive JavaScript UI library
-
-[Svelte-badge]: https://img.shields.io/badge/Svelte-FF3E00?style=for-the-badge&logo=svelte
-
-[Svelte-url]: https://www.typescriptlang.org/}
-
-- [![Backbone.js][Backbone.js-badge]][Backbone.js-url] - A JavaScript library for building web applications
-
-[Backbone.js-badge]: https://img.shields.io/badge/Backbone.js-0071B5?style=for-the-badge&logo=backbone
-
-[Backbone.js-url]: https://www.typescriptlang.org/}
-
-- [![Meteor][Meteor-badge]][Meteor-url] - An open-source platform for building scalable real-time web applications
-
-[Meteor-badge]: https://img.shields.io/badge/Meteor-DE4F4F?style=for-the-badge&logo=meteor
-
-[Meteor-url]: https://www.typescriptlang.org/}
-
-- [![Astro][Astro-badge]][Astro-url] - An opinionated framework for building web pages with React and TypeScript
-
-[Astro-badge]: https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro
-
-[Astro-url]: https://www.typescriptlang.org/}
-
-## Setup
-
-### Installation
-
-To install this project, follow these steps:
-
-1. Install Node.js v12 or later
-
-2. Install a code editor (e.g., Visual Studio Code)
-
-3. Install the required dependencies:
-
-4. `npm install react react-dom axios`
-
-5. Install the development dependencies (if needed):
-
-6. `npm install --dev eslint prettier`
-
-### Usage
-
-After installation, you can use the project by following these steps:
-
-1. Open the project directory in your code editor
-
-2. Run `npm start` to start the development server
-
-### Parameters
-
-| Field Name | Description  | Default Value |
-|------------|--------------|---------------|
-| `name`     | Project name | project       |
 
 ## Acknowledgements
 
@@ -186,7 +81,6 @@ guidelines below.
 
 ### Contributors
 
-- Luis Ventura (luisvent)
 - Luis Ventura (luisvent)
 
 ## About the Author
