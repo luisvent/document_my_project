@@ -1,10 +1,11 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {UtilsService} from "../../services/utils.service";
 
 @Component({
     selector: 'app-form-checkbox',
     templateUrl: './form-checkbox.component.html',
-    styleUrls: ['./form-checkbox.component.css']
+    styleUrls: ['./form-checkbox.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormCheckboxComponent implements AfterViewInit {
 

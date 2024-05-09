@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector: 'app-form-field',
     templateUrl: './form-field.component.html',
-    styleUrls: ['./form-field.component.css']
+    styleUrls: ['./form-field.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormFieldComponent {
     @Input()

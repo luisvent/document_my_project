@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
 @Component({
     selector: 'app-form-radio',
     templateUrl: './form-radio.component.html',
-    styleUrls: ['./form-radio.component.css']
+    styleUrls: ['./form-radio.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FormRadioComponent {
 
