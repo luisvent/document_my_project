@@ -26,7 +26,6 @@ export class MultiFieldComponent {
     set value(values: any[] | null) {
         if (!values) return;
 
-
         this.entries = [];
         values.forEach(value => {
             console.log(typeof value)
@@ -36,8 +35,6 @@ export class MultiFieldComponent {
                 this.entries.push(this.generateFields(Object.values(value)));
             }
         })
-
-        console.log(this.entries)
     }
 
     addEntry() {

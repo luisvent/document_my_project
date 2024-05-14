@@ -37,7 +37,6 @@ import {
     selectUsageSteps
 } from "../../store/selectors/editor.selectors";
 import {EditorState} from "../../store/reducers/editor.reducer";
-import {testData} from "../../../data/mock";
 import {LicenseOptions} from "../../interfaces/license-options.interface";
 import {ContributorOptions} from "../../interfaces/contributor-options.interface";
 import {ContributionOptions} from "../../interfaces/contribution-options.interface";
@@ -113,8 +112,7 @@ export class FormComponent implements OnInit {
                 this.BuildMarkdown(state);
             }
         })
-
-        this.store.dispatch(Actions.setData({data: testData}));
+        // this.store.dispatch(Actions.setData({data: testData}));
     }
 
     BuildMarkdown(state: EditorState) {

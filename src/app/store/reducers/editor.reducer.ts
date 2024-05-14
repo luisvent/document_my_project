@@ -1,7 +1,6 @@
 import {createReducer, on} from '@ngrx/store';
 import {Actions} from "../actions/action-types";
 import {InstallationOptions} from "../../interfaces/installation-options.interface";
-import {LicenseType} from "../../enums/license-type.enum";
 import {GitHubOptions} from "../../interfaces/github-options.interface";
 import {NPMOptions} from "../../interfaces/npm-options.interface";
 import {FeatureOptions} from "../../interfaces/feature-options.interface";
@@ -45,7 +44,7 @@ export interface EditorState {
 
 const initialState: EditorState = {
     title: '',
-    shortDescription: 'string',
+    shortDescription: '',
     description: '',
     navigationLinks: false,
     sectionIcons: false,
@@ -85,9 +84,7 @@ const initialState: EditorState = {
     contributors: [],
     configuration: {
         description: '',
-        parameters: [
-            {field: 'url', description: 'database url connection string', default: 'localhost:56900'}
-        ]
+        parameters: []
     },
     author: {
         name: '',
@@ -96,7 +93,7 @@ const initialState: EditorState = {
         github: '',
         likedIn: '',
     },
-    license: {type: LicenseType.MIT, customText: undefined},
+    license: {type: undefined, customText: undefined},
     watermark: true,
     generateMarkdown: false,
     generatedMarkdown: ''

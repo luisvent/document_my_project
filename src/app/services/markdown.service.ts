@@ -32,7 +32,7 @@ export class MarkdownService {
                 badges: true
             }),
             this.generateIntroductionSection(state.title, state.shortDescription,
-                'https//:url.com', state.logoUrl),
+                '', state.logoUrl),
             state.npm.badges && this.generateNpmBadges(state.npm.package!, {
                 npmVersion: {
                     color: '0470FF',
@@ -77,8 +77,8 @@ export class MarkdownService {
                     this.generateParametersTable(state.configuration.parameters)] : []),
             state.acknowledgments.length > 0 && this.generateAcknowledgementsSection(state.acknowledgments, state.sectionIcons),
             state.contribution.add && this.generateContributionSection(state.contribution, state.contributors, state.sectionIcons),
-            this.generateAuthorSection(state.author, state.sectionIcons),
-            this.generateLicenseSection(state.license, state.sectionIcons),
+            state.author.name.length > 0 && this.generateAuthorSection(state.author, state.sectionIcons),
+            state.license.type && this.generateLicenseSection(state.license, state.sectionIcons),
             state.backToTop && this.generateBackToTop(state.sectionIcons),
             this.generateWatermark()
         ];
@@ -561,7 +561,9 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
         return `
 <div align="center">
 
-<a href="${url}" target="_blank" title="Go to ${url} website"><img width="196px" alt="${title}" src="${imgUrl}"></a>
+${imgUrl !== '' ? `<a href="${url}" target="_blank" title="Go to ${url} website">
+<img width="196px" alt="${title}" src="${imgUrl}">
+</a>` : ''}
 
 # ${title}
 
