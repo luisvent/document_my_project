@@ -108,6 +108,11 @@ export const selectAuthorGithubUsername = createSelector(
     (state: EditorState) => state.author.github)
 
 
+export const selectAuthorLinkedinUsername = createSelector(
+    editorSelector,
+    (state: EditorState) => state.author.likedIn ?? '')
+
+
 export const selectLicense = createSelector(
     editorSelector,
     (state: EditorState) => state.license)
