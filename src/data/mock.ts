@@ -4,30 +4,27 @@ import {LicenseType} from "../app/enums/license-type.enum";
 export const testData: EditorState = {
     title: 'Document My Project',
     shortDescription: 'Easily create markdown documentation for your project',
-    description: 'Tired of manually writing README files? Introducing an web app that streamlines your documentation process for Github projects. Our intuitive platform lets you generate beautiful and informative Markdown documentation in seconds.',
-    navigationLinks: false,
-    sectionIcons: false,
+    description: 'Tired of manually writing README files? this tool simplifies the process of creating documentation for Github projects. With just a few clicks, you can generate comprehensive documentation that enhances the visibility and usability of your repositories in seconds.',
+    navigationLinks: true,
+    sectionIcons: true,
     backToTop: true,
     installSteps: [
-        'Install Node.js v12 or later',
-        'Install a code editor (e.g., Visual Studio Code)',
+        'Install Node.js v16 or later',
         'Install the required dependencies:',
-        '`npm install react react-dom axios`',
-        'Install the development dependencies (if needed):',
-        '`npm install --dev eslint prettier`'
+        '`npm install`'
     ],
     usageSteps: [
         'Open the project directory in your code editor',
-        'Run `npm start` to start the development server',
+        'Run `npm run start` to start the development server',
     ],
-    contentTable: false,
+    contentTable: true,
     github: {
         username: 'luisvent',
         repo: 'document_my_project',
         badges: true
     },
-    logoUrl: 'https://api.lorem.space/image/game?w=200&h=200',
-    mainImageUrl: 'https://api.lorem.space/image/game?w=300&h=300',
+    logoUrl: '../assets/images/icon.png',
+    mainImageUrl: '../assets/images/dmp_1.png',
     displayMarkdownResult: false,
     npm: {
         package: 'http-status-utility',
@@ -35,64 +32,41 @@ export const testData: EditorState = {
         badges: true
     },
     images: [
-        'https://api.lorem.space/image/dashboard?w=200&h=200',
-        'https://api.lorem.space/image/dashboard?w=200&h=200',
-        'https://api.lorem.space/image/dashboard?w=200&h=200',
-        'https://api.lorem.space/image/dashboard?w=200&h=200',
+        '../assets/images/dmp_s_1.png',
+        '../assets/images/dmp_s_2.png',
+        '../assets/images/dmp_s_3.png',
+        '../assets/images/dmp_s_4.png',
     ],
     features: [
         {
-            title: 'AI Generation',
-            description: 'Use AI to autogenerate all the info for your project'
+            title: 'Template ready',
+            description: 'Provide a clear and concise description of your project, highlight the main features, goals, and benefits of your project'
         },
         {
-            title: 'Feature 2',
-            description: 'Use AI to autogenerate all the info for your project'
+            title: 'Ease fo use',
+            description: 'Easily generate a well-structured README file for your GitHub project'
         },
         {
-            title: 'Feature 3',
-            description: 'Use AI to autogenerate all the info for your project'
+            title: 'Preview',
+            description: 'Preview the generated README (light/dark theme) file before committing it to your repository'
         }
     ],
     technologies: [
-        {name: 'Ember.js', value: 'ember', description: "A front-end web application framework", mainColor: "#E04E39"},
-        {
-            name: 'Vue.js',
-            value: 'vue',
-            description: "An open-source JavaScript library for building user interfaces",
-            mainColor: "#41B883"
-        },
         {
             name: 'Angular',
             value: 'angular',
             description: "A front-end web application framework",
             mainColor: "#DD0031"
         },
-
+        {name: 'NgRx', value: 'ngrx', description: "Angular state management based on Redux", mainColor: "#B7116E"},
+        {name: 'Tailwind CSS', value: 'tailwindcss', description: 'Utility-first CSS framework', mainColor: '#38B2AC'},
         {
-            name: 'Svelte',
-            value: 'svelte',
-            description: "A high-performance reactive JavaScript UI library",
-            mainColor: "#FF3E00"
+            name: 'TypeScript',
+            value: 'typescript',
+            description: "A strict syntactical superset of JavaScript",
+            mainColor: "#3178C6"
         },
-        {
-            name: 'Backbone.js',
-            value: 'backbone',
-            description: "A JavaScript library for building web applications",
-            mainColor: "#0071B5"
-        },
-        {
-            name: 'Meteor',
-            value: 'meteor',
-            description: "An open-source platform for building scalable real-time web applications",
-            mainColor: "#DE4F4F"
-        },
-        {
-            name: 'Astro',
-            value: 'astro',
-            description: "An opinionated framework for building web pages with React and TypeScript",
-            mainColor: "#FF5D01"
-        },],
+    ],
     installation: {
         projectName: '',
         packageManager: '',
@@ -106,11 +80,7 @@ export const testData: EditorState = {
     },
     configuration: {
         description: 'Default values to configure',
-        parameters: [{
-            field: 'name',
-            description: 'Project name',
-            default: 'project'
-        }]
+        parameters: []
     },
     acknowledgments: [
         {
@@ -134,18 +104,14 @@ export const testData: EditorState = {
         {
             name: 'Luis Ventura',
             username: 'luisvent'
-        },
-        {
-            name: 'Luis Ventura',
-            username: 'luisvent'
         }
     ],
     author: {
         name: 'Luis Ventura',
         email: 'luis.ventura@email.com',
         url: 'luisvent.com ',
-        github: 'https://github.com/luisvent',
-        likedIn: 'https://www.linkedin.com/in/luisvent/',
+        github: 'luisvent',
+        likedIn: 'luisvent',
     },
     license: {type: LicenseType.MIT, customText: undefined},
     watermark: true,
