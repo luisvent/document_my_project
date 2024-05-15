@@ -1,5 +1,5 @@
 <app-background></app-background>
-<app-header></app-header>
+<app-header (loadData)="LoadSample()"></app-header>
 <div class="flex relative">
     <div class=" w-full flex gap-12 justify-center flex-col lg:flex-row items-center lg:items-start">
         <main [ngClass]="{'max-w-96': generatedMarkdown$ | async}" class="block w-full max-w-[700px]">

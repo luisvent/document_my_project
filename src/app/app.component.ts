@@ -6,6 +6,7 @@ import {initFlowbite} from "flowbite";
 import {MarkdownService} from "./services/markdown.service";
 import {ToastService} from "./services/toast.service";
 import {Actions} from "./store/actions/action-types";
+import {testData} from "../data/mock";
 
 @Component({
     selector: 'app-root',
@@ -28,5 +29,12 @@ export class AppComponent implements OnInit {
     GenerateMarkdown() {
         this.store.dispatch(Actions.generateMarkdown({generate: true}));
         window.scroll(0, 0);
+    }
+
+
+    LoadSample() {
+        this.store.dispatch(Actions.setData({data: testData}));
+        this.GenerateMarkdown();
+        this.toastService.success('Sample data loaded');
     }
 }
