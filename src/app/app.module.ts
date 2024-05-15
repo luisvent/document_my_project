@@ -23,6 +23,8 @@ import {MultiFieldComponent} from './components/multi-field/multi-field.componen
 import {LogPipe} from "./pipes/log.pipe";
 import {SvgIconComponent} from './components/svg-icon/svg-icon.component';
 import {HeaderComponent} from './components/header/header.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {RepoComponent} from './components/repo/repo.component';
 
 @NgModule({
     declarations: [
@@ -41,7 +43,9 @@ import {HeaderComponent} from './components/header/header.component';
         MultiFieldComponent,
         LogPipe,
         SvgIconComponent,
-        HeaderComponent
+        HeaderComponent,
+        FooterComponent,
+        RepoComponent
     ],
     imports: [
         BrowserModule,
