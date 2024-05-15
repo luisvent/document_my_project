@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
     selector: 'app-header',
@@ -8,4 +8,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class HeaderComponent {
 
+    @Output()
+    loadData = new EventEmitter();
+
+    LoadData() {
+        this.loadData.emit();
+    }
 }
