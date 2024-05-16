@@ -24,19 +24,6 @@ Easily create markdown documentation for your project
 
 </div>
 
-
-<p align="center">
-            <a aria-label="NPM Version" href="https://www.npmjs.com/package/http-status-utility">
-            <img alt="" src="https://img.shields.io/npm/v/http-status-utility.svg?label=NPM&logo=npm&style=for-the-badge&color=0470FF&logoColor=white">
-          </a>
-            <a aria-label="NPM Download Count" href="https://www.npmjs.com/package/http-status-utility">
-            <img alt="" src="https://img.shields.io/npm/dt/http-status-utility?label=Downloads&style=for-the-badge&color=67ACF3">
-          </a>
-            <a aria-label="palm-api Size" href="https://www.npmjs.com/package/http-status-utility">
-            <img alt="" src="https://img.shields.io/bundlephobia/minzip/http-status-utility?style=for-the-badge&color=F9DBBC">
-          </a>
-          </p>
-
 <div align="center"><h4><a href="#-about-the-project">ℹ️ About the Project</a> • <a href="#-showcase">🏞 Showcase</a> • <a href="#-features">⭐️ Features</a> • <a href="#-stack-tech">🛠 Stack Tech</a> • <a href="#-setup">⚙ ️Setup</a> • <a href="#-acknowledgements">🏆 Acknowledgements</a> • <a href="#-contributing">👏🏻 Contributing</a> • <a href="#-about-the-author">👨🏻‍ About the Author</a> • <a href="#-license">📖 License</a></h4></div>
 
 <p align="center"><img src="./docs/dmp_1.png" alt="Main Image"/></p>
