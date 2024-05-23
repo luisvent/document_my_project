@@ -196,9 +196,17 @@
 
     <div class="flex flex-col">
         <h6>Add Contributors</h6>
+        <app-form-checkbox
+            #contributorsImgCheckbox
+            (change)=" inputChange('contributors-img', $event.target)"
+            [title]="'Contributors Image'"
+            [value]="(contribution$ | async)?.contributorsImg"
+        ></app-form-checkbox>
+
         <app-multi-field
                 (valueChange)="debounceInput$.next({type: 'contributors', value: $event})"
                 [fields]="['Name', 'Username']"
+                [ngClass]="{'hidden': contributorsImgCheckbox.value}"
                 [value]="contributors$ | async"
         ></app-multi-field>
     </div>

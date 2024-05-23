@@ -248,6 +248,10 @@ export class FormComponent implements OnInit {
                 this.store.dispatch(Actions.modifyContribution({contribution: input.value}));
                 break;
 
+            case 'contributors-img':
+                this.store.dispatch(Actions.toggleContributorsImg({contributorsImg: input.value}));
+                break;
+
             case 'contribution-guideline':
                 this.store.dispatch(Actions.modifyContributionGuideline({contributionGuidelinesLink: input.value}));
                 break;

@@ -88,6 +88,11 @@ export const modifyContribution = createAction(
     props<{ contribution: boolean }>()
 );
 
+export const toggleContributorsImg = createAction(
+    '[Form] Toggle Contributors Image',
+    props<{ contributorsImg: boolean }>()
+);
+
 export const modifyContributionGuideline = createAction(
     '[Form] Modify Contribution Guideline',
     props<{ contributionGuidelinesLink: string }>()

@@ -199,6 +199,11 @@ export const editorReducer = createReducer(
         return newState(state, {backToTop: action.backToTop})
     }),
 
+    on(Actions.toggleContributorsImg, (state, action): EditorState => {
+        const contribution = newState(state.contribution, {contributorsImg: action.contributorsImg})
+        return newState(state, {contribution})
+    }),
+
     on(Actions.toggleSectionIcons, (state, action): EditorState => {
         return newState(state, {sectionIcons: action.sectionIcons})
     }),
