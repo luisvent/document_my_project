@@ -1,5 +1,4 @@
 import {Injectable} from "@angular/core";
-import {LicenseType} from "../enums/license-type.enum";
 import {InstallationOptions} from "../interfaces/installation-options.interface";
 import {AuthorData} from "../interfaces/author-data.interface";
 import {GitHubOptions} from "../interfaces/github-options.interface";
@@ -76,7 +75,7 @@ export class MarkdownService {
                     this.generateUsageSection(state.usageSteps),
                     this.generateParametersTable(state.configuration.parameters)] : []),
             state.acknowledgments.length > 0 && this.generateAcknowledgementsSection(state.acknowledgments, state.sectionIcons),
-            state.contribution.add && this.generateContributionSection(state.contribution, state.contributors, state.sectionIcons),
+            state.contribution.add && this.generateContributionSection(state.contribution, state.contributors, state.github, state.sectionIcons),
             state.author.name.length > 0 && this.generateAuthorSection(state.author, state.sectionIcons),
             state.license.type && this.generateLicenseSection(state.license, state.sectionIcons),
             state.backToTop && this.generateBackToTop(state.sectionIcons),
@@ -96,178 +95,6 @@ export class MarkdownService {
         if (state.navigationLinks) {
             result = this.generateLinksSection(result);
         }
-
-        return result;
-    }
-
-    test() {
-        // Sample data
-        const npmPackageName = 'my-awesome-package';
-        const githubRepo = 'meta_tag_generator';
-        const githubOwner = 'luisvent';
-
-        const descriptions = [
-            'This is a sample markdown file generated using the MarkdownService.',
-            'To install this package, run `npm install my-awesome-package`.'
-        ];
-
-        const images = [
-            {url: 'https://placehold.co/600x400', alt: 'Image 1'}
-        ];
-
-        const contributionSection = {
-            add: true,
-            contributionGuidelinesLink: 'https://github.com/johndoe/my-awesome-repo/blob/main/CONTRIBUTING.md'
-        };
-
-        const acknowledgements = [
-            {
-                title: 'Package X',
-                url: 'https://example.com/package-x',
-                description: 'A dependency used in this project'
-            },
-            {
-                title: 'Library Y',
-                url: 'https://example.com/library-y',
-                description: 'Another dependency used in this project'
-            }
-        ];
-
-        const licenseSection = {
-            type: LicenseType.MIT
-        };
-
-        const features = [
-            {title: 'Feature 1', description: 'This is the description of Feature 1.'},
-            {title: 'Feature 2', description: 'This is the description of Feature 2.'},
-            {title: 'Feature 3', description: 'This is the description of Feature 3.'}
-        ];
-
-        const techStack = [
-            {
-                name: 'Ionic',
-                value: 'ionic',
-                description: 'Hybrid mobile app development framework',
-                mainColor: '#3880FF'
-            }, // Blue
-            {
-                name: 'Quasar',
-                value: 'quasar',
-                description: 'Vue.js based framework for mobile and web',
-                mainColor: '#1976D2'
-            }, // Blue
-            {
-                name: 'Nuxt.js',
-                value: 'nuxtjs',
-                description: 'Vue.js framework for server-side rendering',
-                mainColor: '#00C58E'
-            }, // Turquoise
-            {name: 'Gatsby', value: 'gatsby', description: 'Static site generator for React', mainColor: '#663399'}, // Rebecca
-                                                                                                                     // Purple
-            {
-                name: 'Gridsome',
-                value: 'gridsome',
-                description: 'Static site generator for Vue.js',
-                mainColor: '#2C3E50'
-            }, // Dark
-               // Blue
-            {
-                name: 'NestJS',
-                value: 'nestjs',
-                description: 'Server-side framework for TypeScript',
-                mainColor: '#E0234E'
-            }, // Red
-            {name: 'AdonisJS', value: 'adonisjs', description: 'MVC web framework for Node.js', mainColor: '#4B32C3'}, // Indigo
-            {name: 'LoopBack', value: 'loopback', description: 'API framework for Node.js', mainColor: '#5A68A5'}, // Light
-                                                                                                                   // Purple
-            {name: 'Slim', value: 'slim', description: 'Microframework for PHP', mainColor: '#2C3E50'}, // Dark Blue
-            {
-                name: 'Flask-RESTful',
-                value: 'flask-restful',
-                description: 'RESTful API toolkit for Flask',
-                mainColor: '#000000'
-            }, // Black
-            {
-                name: 'Django REST framework',
-                value: 'django-rest-framework',
-                description: 'RESTful API framework for Django',
-                mainColor: '#092E20'
-            }, // Dark Green
-            {
-                name: 'Rails API',
-                value: 'rails-api',
-                description: 'API-only mode for Ruby on Rails',
-                mainColor: '#CC0000'
-            }, // Red
-            {name: 'Sinatra', value: 'sinatra', description: 'Microframework for Ruby', mainColor: '#7B7B7B'}, // Grey
-            {name: 'Dropwizard', value: 'dropwizard', description: 'Web framework for Java', mainColor: '#7B98AB'}, // Light
-
-        ];
-
-        const sections = [
-            this.generateGitHubBadges({
-                username: 'John Doe',
-                repo: 'my-awesome-repo',
-                badges: true
-            }),
-            this.generateIntroductionSection('My package', 'Test package introduction just for testing',
-                'https//:url.com', 'https://placehold.co/600x400'),
-            this.generateNpmBadges(npmPackageName, {
-                npmVersion: {
-                    color: '0470FF',
-                    logoColor: 'white'
-                },
-                npmDownloads: {
-                    color: '67ACF3'
-                },
-                bundleSize: {
-                    color: 'F9DBBC'
-                }
-            }),
-            this.generateLinksPlaceholder(),
-            this.generateCenteredImages(images),
-            this.generateTableContentPlaceholder(),
-            this.generateTableOfContentsFromMarkdown(''),
-            this.generateDescription(descriptions),
-            this.generateShowcaseSection(['https://placehold.co/600x400', 'https://placehold.co/600x400', 'https://placehold.co/600x400', 'https://placehold.co/600x400']),
-            this.generateFeaturesSection(features),
-            this.generateTechStackSection(techStack),
-            this.generateInstallSection({
-                projectName: 'My Awesome Project',
-                packageManager: 'npm',
-                dependencies: ['react', 'react-dom', 'axios'],
-                devDependencies: ['eslint', 'prettier'],
-                installationSteps: ['Run the development server with `npm run dev`'],
-                includeSetup: true,
-                setupSteps: ['Install Node.js v12 or later', 'Install a code editor (e.g., Visual Studio Code)'],
-                includeUsage: true,
-                usageSteps: ['Open the project directory in your code editor', 'Run `npm start` to start the development server'],
-            }),
-            // this.generateParametersTable([
-            //     {fieldName: 'name', description: 'Name of the user', defaultValue: 'John Doe'},
-            //     {fieldName: 'age', description: 'Age of the user'},
-            //     {fieldName: 'isAdmin', description: 'Whether the user is an admin or not', defaultValue: 'false'}
-            // ]),
-            this.generateAcknowledgementsSection(acknowledgements),
-            this.generateContributionSection(contributionSection, []),
-            this.generateAuthorSection({
-                name: 'John Doe',
-                email: 'john@example.com',
-                url: 'https://example.com',
-                github: 'john',
-            }),
-            this.generateLicenseSection(licenseSection),
-            this.generateWatermark()
-        ];
-
-        let result = '';
-
-        for (const section of sections) {
-            result += `${section}\n\n`;
-        }
-
-        result = this.generateTableOfContentsFromMarkdown(result);
-        result = this.generateLinksSection(result);
 
         return result;
     }
@@ -465,7 +292,7 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
     }
 
     generateContributionSection(contribution: ContributionOptions, contributors: ContributorOptions[],
-                                addTitleIcons = false): string {
+                                github: GitHubOptions, addTitleIcons = false): string {
         const {contributionGuidelinesLink} = contribution;
         let contributionSection = `${this.generateTitle(`${addTitleIcons ? '👏🏻 ' : ''}Contributing`)}\n\nWe welcome contributions from the community! If you would like to contribute to this project, please follow the guidelines below.\n`;
 
@@ -485,12 +312,20 @@ This project was created by ${author.name}. Connect with me on [GitHub](https://
             contributionSection += `\nFor more information on how to contribute, please visit [Contribution Guidelines](${contributionGuidelinesLink}).\n`;
         }
 
-        if (contributors.length > 0) {
+        if (contributors.length > 0 || contribution.contributorsImg) {
             contributionSection += `### Contributors\n\n`;
 
-            contributors.forEach(contributor => {
-                contributionSection += `- ${contributor.name} (${contributor.username})\n`;
-            })
+            if (contribution.contributorsImg) {
+
+                contributionSection += `<a href="https://github.com/${github.username}/${github.repo}/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=${github.username}/${github.repo}" />
+</a>`;
+            } else if (contributors.length > 0) {
+
+                contributors.forEach(contributor => {
+                    contributionSection += `- ${contributor.name} (${contributor.username})\n`;
+                })
+            }
         }
 
         return contributionSection;

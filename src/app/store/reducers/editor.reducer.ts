@@ -80,7 +80,7 @@ const initialState: EditorState = {
     installSteps: [],
     usageSteps: [],
     acknowledgments: [],
-    contribution: {add: false, contributionGuidelinesLink: undefined},
+    contribution: {add: false, contributorsImg: false, contributionGuidelinesLink: undefined},
     contributors: [],
     configuration: {
         description: '',

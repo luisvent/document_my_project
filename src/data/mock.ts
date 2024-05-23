@@ -99,7 +99,7 @@ export const testData: EditorState = {
             description: 'Prism is a lightweight, extensible syntax highlighter, built with modern web standards in mind. It’s used in millions of websites, including some of those you visit daily.'
         }
     ],
-    contribution: {add: true, contributionGuidelinesLink: undefined},
+    contribution: {add: true, contributorsImg: true, contributionGuidelinesLink: undefined},
     contributors: [
         {
             name: 'Luis Ventura',
