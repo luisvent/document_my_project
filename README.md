@@ -1,3 +1,12 @@
+<p align="center">
+
+<a href="https://devhunt.org/tool/document-my-project" title="Go to DevHunt">
+<img width="196px" alt="Document My Project" src="./docs/devhunt_badge.png">
+</a>
+
+</p>
+
+
 <a name="readme-top"></a>
 <!--
 *** Thanks for using Document My Project. (https://github.com/luisvent/document_my_project) 
